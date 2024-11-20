@@ -15,6 +15,11 @@ public class Character : MonoBehaviour
         healthValue.OnDeath.AddListener(PlayDeathEffect);
     }
 
+    protected virtual void Update()
+    {
+
+    }
+
     public virtual void Move(Vector2 direction)
     {
         myRigidBody.AddForce(direction * Time.deltaTime * movementSpeed, ForceMode2D.Impulse);

@@ -5,9 +5,9 @@ public class Player : Character
     [SerializeField] private Transform playerWeaponTip;
     [SerializeField] private GameObject bulletReference;
 
-    protected override void Start()
+    public override void Attack()
     {
-        base.Start();
-        currentWeapon = new ProjectileWeapon(playerWeaponTip, bulletReference);
+        base.Attack();
+        currentWeapon.Shoot(playerWeaponTip);
     }
 }

@@ -35,7 +35,7 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            player.currentWeapon.Shoot();
+            player.Attack();
         }
     }
 }

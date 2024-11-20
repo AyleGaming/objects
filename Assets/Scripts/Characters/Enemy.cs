@@ -5,7 +5,7 @@ public class Enemy : Character
     [SerializeField] private float distanceToStop = 3f;
     [SerializeField] private float attackCooldown = 3f;
 
-    private Player target;
+    protected Player target;
     private float attackTimer;
 
     protected override void Start()
@@ -14,7 +14,7 @@ public class Enemy : Character
         target = FindObjectOfType<Player>();
     }
 
-    private void Update()
+    protected override void Update()
     {
         // dead?
         if (target == null) return;

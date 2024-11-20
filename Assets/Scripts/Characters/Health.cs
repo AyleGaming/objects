@@ -9,8 +9,7 @@ public class Health
     public void DecreaseHealth(float damage)
     {
         healthValue -= damage;
-        Debug.Log("Health decreasing to: " + healthValue);
-
+       
         if (IsDead())
         {
             OnDeath.Invoke();
@@ -20,22 +19,19 @@ public class Health
     public void IncreaseHealth(float damage)
     {
         healthValue += damage;
+        
     }
 
     public bool IsDead()
     {
         return healthValue <= 0;
     }
-    public float GetHealthValue()
-    {
-        return healthValue;
-    }
 
     public Health()
     {
-        healthValue = 100;
-        Debug.Log("Set initial healthvalue: " + healthValue);
+        healthValue = 3;
         OnDeath = new UnityEvent();
+        
     }
 
 

@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform[] spawnPointsArray;
     [SerializeField] private List<Enemy> listOfAllEnemiesAlive;
 
+
+    private ScoreManager scoreManager;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +25,7 @@ public class GameManager : MonoBehaviour
         else
             Destroy(gameObject);
 
+        scoreManager = GetComponent<ScoreManager>();
         StartCoroutine(SpawnWaveOfEnemies());
         SpawnEnemy();
     }
@@ -42,14 +47,16 @@ public class GameManager : MonoBehaviour
 
     public void RemoveEnemyFromList(Enemy enemyToBeRemoved)
     {
+        scoreManager.IncreaseScore(ScoreType.EnemyKilled); 
         listOfAllEnemiesAlive.Remove(enemyToBeRemoved);
     }
+
 
     private IEnumerator SpawnWaveOfEnemies()
     {
         while (true)
         {
-            if (listOfAllEnemiesAlive.Count < 20)
+            if (listOfAllEnemiesAlive.Count < 3)
             {
                 Enemy clone = SpawnEnemy();
                 yield return new WaitForEndOfFrame();

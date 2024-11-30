@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8244579096465657473}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon Tip Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1222830082555556573}
   - component: {fileID: 6436008612330156806}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gun Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a3a5352cf917e724e9dc8ddb826bff6a, type: 3}
   m_Color: {r: 0.7568628, g: 0.7568628, b: 0.7568628, a: 1}
   m_FlipX: 0
@@ -125,7 +125,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8155258097757244880}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon Tip Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6769488686961459044}
   - component: {fileID: 5954267398624302358}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gun Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a3a5352cf917e724e9dc8ddb826bff6a, type: 3}
   m_Color: {r: 0.75686276, g: 0.75686276, b: 0.75686276, a: 1}
   m_FlipX: 0
@@ -318,6 +318,10 @@ PrefabInstance:
     - target: {fileID: 8141675055446830890, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
       propertyPath: m_Color.r
       value: 0.3647059
+      objectReference: {fileID: 0}
+    - target: {fileID: 8141675055446830890, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8231581536952092623, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
       propertyPath: m_Color.b

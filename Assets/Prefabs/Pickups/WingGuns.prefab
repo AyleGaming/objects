@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1331329840032367291}
   - component: {fileID: 8173644615884648821}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GunLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2881214904981972833}
   - component: {fileID: 1369298811520414434}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GunRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 4005377615474982161}
   - component: {fileID: -1299775250653588138}
   - component: {fileID: 1962560522611367685}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WingGuns
   m_TagString: Untagged
   m_Icon: {fileID: 0}

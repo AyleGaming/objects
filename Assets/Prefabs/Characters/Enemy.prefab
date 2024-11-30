@@ -123,11 +123,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f75f56c11f65c4e961bb5aff0f1b03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlinkCoolDownUpdate:
+    m_PersistentCalls:
+      m_Calls: []
   myRigidBody: {fileID: 6018796688989227288}
   movementSpeed: 7
   dieEffect: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7, type: 3}
   ultimateAvailable: 0
   currentWeapon: {fileID: 0}
+  blinkAvailable: 1
   obstacleMask:
     serializedVersion: 2
     m_Bits: 8

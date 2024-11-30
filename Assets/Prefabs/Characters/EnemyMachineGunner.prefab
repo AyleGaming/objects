@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3295011049789630334}
   - component: {fileID: 5478473963973494404}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: engine2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 28c1ad36912f3fa4c9186b8c329f3cfc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6600836154617896327}
   - component: {fileID: 8894823124822884490}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: fire04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d23b36720b5151f438d42a1425623104, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 994101681301311774}
   - component: {fileID: 8135718204161808835}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: gun07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e25cc5df866cb8b4ead9e03973368b75, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -366,6 +366,10 @@ PrefabInstance:
     - target: {fileID: 8141675055446830890, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
       propertyPath: m_Color.r
       value: 0.16058035
+      objectReference: {fileID: 0}
+    - target: {fileID: 8141675055446830890, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8231581536952092623, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
       propertyPath: m_Sprite

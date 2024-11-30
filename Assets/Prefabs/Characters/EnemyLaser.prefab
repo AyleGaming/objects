@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4678817480624436509}
   - component: {fileID: 8533461133529173617}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ufoGreen (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3382964245810549936}
   - component: {fileID: 2729997612634000893}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ufoGreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -257,6 +257,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8141675055446830890, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
       propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8141675055446830890, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
+      propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8231581536952092623, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
@@ -466,3 +470,4 @@ MonoBehaviour:
   attackCooldown: 1
   weaponTip: {fileID: 1377021721234914204}
   laserDistanceThreshold: 5
+  rotationSpeed: 0

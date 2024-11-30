@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMachineGunner : Enemy
 {
-    // Start is called before the first frame update
-    protected override void Start()
+    [SerializeField] private Transform weaponTip;
+    public override void Attack()
     {
-        base.Start();
-    }
-
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
+        if(attackTimer >= currentWeapon.fireRate)
+        {
+            currentWeapon.Shoot(weaponTip);
+            attackTimer = 0;
+        }
+        else
+        {
+            attackTimer += Time.deltaTime;
+        }
     }
 }

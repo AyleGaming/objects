@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyExploder : Enemy
 {
-    [SerializeField] private bool hasCollided = false;
+    [SerializeField] private bool hasCollidedWithPlayer = false;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -15,7 +13,8 @@ public class EnemyExploder : Enemy
     protected override void Update()
     {
         base.Update();
-        if(hasCollided == true)
+        // Explode when collided with player
+        if(hasCollidedWithPlayer == true)
         {
             Attack();
         }
@@ -23,7 +22,9 @@ public class EnemyExploder : Enemy
 
     public override void Attack()
     {
-        target.healthValue.DecreaseHealth(3);
+        // Decrease player max health by max (3)
+        target.healthValue.DecreaseHealth(15);
+        PlayDeathEffect();
         Destroy(gameObject);
     }
 
@@ -31,8 +32,7 @@ public class EnemyExploder : Enemy
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Triggered");
-            hasCollided = true;
+            hasCollidedWithPlayer = true;
         }
     }
 }

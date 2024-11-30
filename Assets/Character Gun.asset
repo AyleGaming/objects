@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d710bb4ea9c4ff40bf72339a35bc348, type: 3}
+  m_Name: Character Gun
+  m_EditorClassIdentifier: 
+  damage: 50
+  ammo: 100
+  fireRate: 0.18
+  fireSounds:
+  - {fileID: 8300000, guid: 06ada5590eba8d6489b36c6f3c54ff78, type: 3}
+  - {fileID: 8300000, guid: 06ada5590eba8d6489b36c6f3c54ff78, type: 3}
+  volume: 0.2
+  projectilePrefab: {fileID: 3670970290874687472, guid: 9ad4d5bdcb8ab0340a88a6600089f321, type: 3}

@@ -6,7 +6,7 @@ public class Enemy : Character
     [SerializeField] private float attackCooldown = 3f;
 
     protected Player target;
-    private float attackTimer;
+    protected float attackTimer;
 
     protected override void Start()
     {

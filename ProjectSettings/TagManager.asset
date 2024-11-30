@@ -5,11 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - FxTemporaire
+  - Bullet
+  - WingGuns
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Obstacles
   - Water
   - UI
   - 

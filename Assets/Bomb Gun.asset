@@ -15,10 +15,11 @@ MonoBehaviour:
   damage: 3
   ammo: 100
   fireRate: 0.7
-  fireSounds:
-  - {fileID: 8300000, guid: 7b889162724f05c4f95da46adbd50ef7, type: 3}
-  - {fileID: 8300000, guid: b9bcff787e03ea4448419527c126e177, type: 3}
-  - {fileID: 8300000, guid: b39ec697f76aec04fb8081c0c4f6dbae, type: 3}
-  - {fileID: 8300000, guid: 6c641842185384646b603322cc7e7559, type: 3}
+  ammoFaction: 1
   volume: 1
+  fireSounds:
+  - {fileID: 8300000, guid: ab8922a0f690a844ab956453d7c62b5b, type: 3}
+  - {fileID: 8300000, guid: a4cc1399191f50541b09abe5ddccdfa4, type: 3}
+  - {fileID: 8300000, guid: b61dfb0a6625e1e45babe708937dbf61, type: 3}
+  - {fileID: 8300000, guid: 9a7e886212d410045bfa10f98d53a746, type: 3}
   projectilePrefab: {fileID: 3670970290874687472, guid: 2834286483ffa1245bf95a1c3a03027c, type: 3}

@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Linq;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class ScoreManager : MonoBehaviour
 {
+    public static event Action<ScoreManager> OnScoreManagerInit;
     public UnityEvent<int> OnScoreChanged;
-    public UnityEvent<int> OnHighestScoreChange;
     [SerializeField] private int totalScore;
     [SerializeField] private int highestScore;
 
@@ -16,39 +14,45 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private int scorePerCoin;
     [SerializeField] private int scorePerPowerUp;
 
-    [SerializeField] private List<ScoreData> allScores = new List<ScoreData>();
+    private void OnEnable()
+    {
+        Character.OnCharacterInitialized += SetupCharacterListeners;
+        GameManager.OnEnemyKilled += IncreaseScore;
+    }
 
-    [SerializeField] private ScoreData latestScore;
+    private void OnDisable()
+    {
+        Character.OnCharacterInitialized -= SetupCharacterListeners;
+        GameManager.OnEnemyKilled -= IncreaseScore;
+    }
+
+    private void SetupCharacterListeners(Character character)
+    {
+        if (character is Player player)
+        {
+            if (player.healthValue != null)
+            {
+                player.healthValue.OnDeath.AddListener(RegisterScore);
+            }
+            else
+            {
+                Debug.LogError("ScoreManager: Player's healthValue is not initialized.");
+            }
+        }
+    }
+
 
     private void Start()
     {
-        Player playerObject = FindObjectOfType<Player>();
-        playerObject.healthValue.OnDeath.AddListener(RegisterScore);
-        
-        highestScore = PlayerPrefs.GetInt("HighScore");
-        
-        // At start of game
-        // try to convert back into score data
-        string latestScoreInJson = PlayerPrefs.GetString("LatestScore");
-
+        OnScoreManagerInit?.Invoke(this);
     }
 
     private void RegisterScore()
     {
-        //create an object filled with information
-        latestScore = new ScoreData("RDA", totalScore);
-
-        // convert the object (class) to a string in json format
-        string latestScoreInJson = JsonUtility.ToJson(latestScore);
-
-        // save to playerprefs
-        PlayerPrefs.SetString("LatestScore", latestScoreInJson);
-             
         // NEW HIGH SCORE!
         if (totalScore > highestScore)
         {
             highestScore = totalScore;
-            PlayerPrefs.SetInt("HighScore", highestScore);
         }
     }
 

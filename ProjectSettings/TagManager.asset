@@ -45,3 +45,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: 1Background
+    uniqueID: 3355989005
+    locked: 0
+  - name: 2Starfield
+    uniqueID: 108480447
+    locked: 0
+  - name: 3Planets
+    uniqueID: 2014594755
+    locked: 0
+  - name: 4Player
+    uniqueID: 3852261349
+    locked: 0

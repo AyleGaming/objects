@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 public class Character : MonoBehaviour
 {
     public UnityEvent<float> BlinkCoolDownUpdate;
+    public static event Action<Character> OnCharacterInitialized;
 
     [SerializeField] protected Rigidbody2D myRigidBody;
-    [SerializeField] private float movementSpeed = 10f;
+    [SerializeField] protected float movementSpeed = 10f;
     [SerializeField] private GameObject dieEffect;
     [SerializeField] public bool ultimateAvailable = false;
     public Health healthValue;
@@ -21,12 +23,11 @@ public class Character : MonoBehaviour
 
     public LayerMask obstacleMask;
 
-
-
     protected virtual void Start()
     {
         healthValue = new Health();
         healthValue.OnDeath.AddListener(PlayDeathEffect);
+        OnCharacterInitialized?.Invoke(this);
         ultimateAvailable = false;
     }
 

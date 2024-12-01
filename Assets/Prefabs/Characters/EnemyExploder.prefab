@@ -89,7 +89,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5131028280182454688, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6812313291857078769, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
       propertyPath: m_LocalScale.x
@@ -223,7 +223,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   myRigidBody: {fileID: 6018796688989227288}
-  movementSpeed: 14
+  movementSpeed: 11
   dieEffect: {fileID: 725748389856807714, guid: 4bda94453d2ca7444a0fff05b2d425f5, type: 3}
   ultimateAvailable: 0
   currentWeapon: {fileID: 0}

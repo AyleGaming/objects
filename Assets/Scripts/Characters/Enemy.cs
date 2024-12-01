@@ -11,6 +11,11 @@ public class Enemy : Character
     protected override void Start()
     {
         base.Start();
+
+        // Set Enemy Health
+        healthValue.SetHealthValue(80);
+        healthValue.SetShieldValue(0);
+
         target = FindObjectOfType<Player>();
     }
 

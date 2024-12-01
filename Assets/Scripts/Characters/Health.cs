@@ -12,7 +12,6 @@ public class Health
 
     public void DecreaseHealth(float damage)
     {
-
         if(shieldValue > 0)
         {
             // 40 damage = 40-15
@@ -61,6 +60,15 @@ public class Health
         return shieldValue;
     }
 
+    public void SetHealthValue(float value)
+    {
+        healthValue = value;
+    }
+
+    public void SetShieldValue(float value)
+    {
+        shieldValue = value;
+    }
     public bool IsDead()
     {
         return healthValue <= 0;
@@ -80,9 +88,10 @@ public class Health
         OnShieldChanged = new UnityEvent<float>();
     }
 
-    public Health(float initialHealth)
+    public Health(float initialHealth, float initialShield)
     {
         healthValue = initialHealth;
+        shieldValue = initialShield;
         OnDeath = new UnityEvent();
         OnHealthChanged = new UnityEvent<float>();
         OnShieldChanged = new UnityEvent<float>();

@@ -15,8 +15,8 @@ MonoBehaviour:
   damage: 1
   ammo: 100
   fireRate: 2
-  fireSounds:
-  - {fileID: 8300000, guid: 1e01a3eff9609af4a91cea332a46838e, type: 3}
-  - {fileID: 8300000, guid: ade03cc41862efe45a14c4802b87b026, type: 3}
+  ammoFaction: 1
   volume: 0.2
+  fireSounds:
+  - {fileID: 8300000, guid: 45c9cc9b4aceeae42a4ef510e7ac1f20, type: 3}
   projectilePrefab: {fileID: 7002166420028194100, guid: ac378b03a7282584fa2282874e3ff926, type: 3}

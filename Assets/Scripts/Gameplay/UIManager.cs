@@ -14,10 +14,8 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI shieldText;
 	[SerializeField] private Slider shieldSlider;
 
-
 	[SerializeField] private TextMeshProUGUI levelText;
 	[SerializeField] private Slider levelSlider;
-	
 
 	[SerializeField] private TextMeshProUGUI scoreText;
 	[SerializeField] private TextMeshProUGUI ultiText;
@@ -26,25 +24,69 @@ public class UIManager : MonoBehaviour
 
 	public float elapsedTime = 0f;
 
-	private void Start()
+	// Setup Listeners for when actions become available
+	private void OnEnable()
 	{
-		FindObjectOfType<ScoreManager>().OnScoreChanged.AddListener(UpdateScoreValue);
-		Player playerObject = FindObjectOfType<Player>();
-
-		playerObject.healthValue.OnHealthChanged.AddListener(UpdateHealthValue);
-		UpdateHealthValue(playerObject.healthValue.GetHealthValue());
-
-		playerObject.healthValue.OnShieldChanged.AddListener(UpdateShieldValue);
-		UpdateShieldValue(playerObject.healthValue.GetShieldValue());
-
-		playerObject.BlinkCoolDownUpdate.AddListener(UpdateBlinkValue);
-
-		GameManager gameManager = FindObjectOfType<GameManager>();
-
-		gameManager.OnUltimateStatusChanged.AddListener(UpdateUltiValue);
-		gameManager.OnLevelPercentStatusChanged.AddListener(UpdateLevelSliderValue);
-		gameManager.OnLevelUpChanged.AddListener(UpdateLevelValue);
+		Character.OnCharacterInitialized += SetupCharacterListenersForUI;
+		ScoreManager.OnScoreManagerInit += SetupScoreManagerListenersForUI;
+		GameManager.OnGameManagerInit += SetupGameManagerListenersForUI;
 	}
+
+	private void OnDisable()
+	{
+		Character.OnCharacterInitialized -= SetupCharacterListenersForUI;
+		ScoreManager.OnScoreManagerInit -= SetupScoreManagerListenersForUI;
+		GameManager.OnGameManagerInit -= SetupGameManagerListenersForUI;
+	}
+
+	private void SetupCharacterListenersForUI(Character character)
+	{
+		if (character is Player player)
+		{
+			if (player.healthValue != null)
+			{
+				player.healthValue.OnHealthChanged.AddListener(UpdateHealthValue);
+				UpdateHealthValue(player.healthValue.GetHealthValue());
+
+				player.healthValue.OnShieldChanged.AddListener(UpdateShieldValue);
+				UpdateShieldValue(player.healthValue.GetShieldValue());
+
+				player.BlinkCoolDownUpdate.AddListener(UpdateBlinkValue);
+			}
+			else
+			{
+				Debug.LogError("UIManager: Player's healthValue is not initialized.");
+			}
+		}
+	}
+
+	private void SetupScoreManagerListenersForUI(ScoreManager scoreManager)
+	{
+		if (scoreManager.OnScoreChanged != null)
+		{
+			scoreManager.OnScoreChanged.AddListener(UpdateScoreValue);
+		}
+		else
+		{
+			Debug.LogError("UIManager: Score manager OnScoreChanged is not initialized.");
+		}
+	}
+
+	private void SetupGameManagerListenersForUI(GameManager gameManager)
+	{
+		if (gameManager != null)
+		{
+			gameManager.OnUltimateStatusChanged.AddListener(UpdateUltiValue);
+			gameManager.OnLevelPercentStatusChanged.AddListener(UpdateLevelSliderValue);
+			gameManager.OnLevelUpChanged.AddListener(UpdateLevelValue);
+		}
+		else
+		{
+			Debug.LogError("UIManager: Score manager OnScoreChanged is not initialized.");
+		}
+
+	}
+
 
 	void Update()
 	{

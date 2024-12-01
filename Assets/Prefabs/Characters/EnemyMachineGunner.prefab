@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -442705947
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 28c1ad36912f3fa4c9186b8c329f3cfc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -154,8 +154,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -442705947
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: d23b36720b5151f438d42a1425623104, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -238,8 +238,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -442705947
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e25cc5df866cb8b4ead9e03973368b75, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -355,6 +355,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5131028280182454688, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8141675055446830890, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
       propertyPath: m_Color.b
       value: 0.26415092
@@ -445,7 +449,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   myRigidBody: {fileID: 6018796688989227288}
-  movementSpeed: 7
+  movementSpeed: 8
   dieEffect: {fileID: 4553287630450876385, guid: 15483e51212e3d74886ea57291f4639a, type: 3}
   ultimateAvailable: 0
   currentWeapon: {fileID: 11400000, guid: 99e31a4a264d09746986325fae5581a9, type: 2}
@@ -454,5 +458,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   distanceToStop: 5
-  attackCooldown: 2
+  attackCooldown: 0.1
   weaponTip: {fileID: 1377021721234914204}

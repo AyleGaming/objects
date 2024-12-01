@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d710bb4ea9c4ff40bf72339a35bc348, type: 3}
   m_Name: Pellet Gun
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 5
   ammo: 100
-  fireRate: 0.5
-  fireSounds:
-  - {fileID: 8300000, guid: 08f78eba48bb21c44ac5a74ca84efc83, type: 3}
-  - {fileID: 8300000, guid: 3dc7b4438e9f788479f2eba0e75191b1, type: 3}
-  - {fileID: 8300000, guid: e196615aab553a14ab4e1aeb462c195c, type: 3}
-  - {fileID: 8300000, guid: 159aa6b3153429349b06479ba4bcb8fc, type: 3}
+  fireRate: 0.4
+  ammoFaction: 1
   volume: 0.5
+  fireSounds:
+  - {fileID: 8300000, guid: 3b9f28d04b9ab0c45bf7262e7ef0e5f3, type: 3}
+  - {fileID: 8300000, guid: 0b1aae3fa63edc14c8cf3000a608748f, type: 3}
   projectilePrefab: {fileID: 3670970290874687472, guid: 519391176bbfb584886312c625cf5570, type: 3}

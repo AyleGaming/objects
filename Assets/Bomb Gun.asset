@@ -16,7 +16,7 @@ MonoBehaviour:
   ammo: 100
   fireRate: 0.7
   ammoFaction: 1
-  volume: 1
+  volume: 0.3
   fireSounds:
   - {fileID: 8300000, guid: ab8922a0f690a844ab956453d7c62b5b, type: 3}
   - {fileID: 8300000, guid: a4cc1399191f50541b09abe5ddccdfa4, type: 3}

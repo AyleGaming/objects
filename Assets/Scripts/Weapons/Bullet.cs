@@ -35,6 +35,7 @@ public class Bullet : MonoBehaviour
                 (bulletFaction == Faction.Enemy && character.CompareTag("Player")))
             {
                 character.healthValue.DecreaseHealth(myDamage);
+                // Play bullet hit effect
                 Instantiate(collisionEffect, transform.position, Quaternion.identity);
             }
         }

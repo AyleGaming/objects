@@ -6,10 +6,10 @@ public class ShieldPickUp : PickUp
 {
     [SerializeField] private int shieldPointsToAdd;
 
-    protected override void PickMeUp(Player playerInTrigger)
+    protected override void PickMeUp(Player player)
     {
-        playerInTrigger.healthValue.IncreaseShield(shieldPointsToAdd);
-        AudioSource.PlayClipAtPoint(pickUpAudio, playerInTrigger.transform.position, pickUpVolume);
+        player.healthValue.IncreaseShield(shieldPointsToAdd);
+        AudioSource.PlayClipAtPoint(pickUpAudio, player.transform.position, pickUpVolume);
         Destroy(gameObject);
     }
 }

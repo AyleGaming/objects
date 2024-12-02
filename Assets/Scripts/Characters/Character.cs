@@ -11,6 +11,7 @@ public class Character : MonoBehaviour
     [SerializeField] protected float movementSpeed = 10f;
     [SerializeField] private GameObject dieEffect;
     [SerializeField] public bool ultimateAvailable = false;
+    [SerializeField] protected AudioClip collisionSound;
     public Health healthValue;
     public Weapon currentWeapon;
 
@@ -22,6 +23,7 @@ public class Character : MonoBehaviour
     public bool blinkAvailable = true;
 
     public LayerMask obstacleMask;
+   
 
     protected virtual void Start()
     {
@@ -33,7 +35,7 @@ public class Character : MonoBehaviour
 
     protected virtual void Update()
     {
-        UpdateBlinkCooldownUI();
+        
     }
 
     public virtual void Move(Vector2 direction)
@@ -87,8 +89,6 @@ public class Character : MonoBehaviour
                 }
             }
 
-            Debug.Log("Player started: " + transform.position);
-
             // Teleport the player
             myRigidBody.MovePosition(targetPosition);
 
@@ -105,20 +105,6 @@ public class Character : MonoBehaviour
         blinkAvailable = false;
     }
 
-    private void UpdateBlinkCooldownUI()
-    {
-        float remainingCooldown = Mathf.Max(0, nextBlinkTime - Time.time); // Time remaining until blink is available
-
-        if (remainingCooldown > 0)
-        {
-            BlinkCoolDownUpdate.Invoke(remainingCooldown);
-        }
-        else
-        {
-            BlinkCoolDownUpdate.Invoke(0f);
-            blinkAvailable = true;
-        }
-    }
 
     public void SetUltimateAvailable(bool enabled)
     {
@@ -129,4 +115,21 @@ public class Character : MonoBehaviour
     {
         return ultimateAvailable;
     }
+
+    protected void PlaySoundAtPosition(AudioClip clip, Vector3 position, float minPitch, float maxPitch, float volume = 0.1f)
+    {
+        // Create a temporary AudioSource
+        AudioSource tempAudioSource = new GameObject("TempAudioSource").AddComponent<AudioSource>();
+        tempAudioSource.clip = clip;
+        tempAudioSource.transform.position = position;
+        tempAudioSource.volume = volume;
+
+        // Randomize pitch based on the given range
+        tempAudioSource.pitch = UnityEngine.Random.Range(minPitch, maxPitch);
+        tempAudioSource.Play();
+
+        // Destroy the temporary AudioSource after it finishes playing
+        Destroy(tempAudioSource.gameObject, clip.length / tempAudioSource.pitch);
+    }
+
 }

@@ -6,7 +6,7 @@ public abstract class PickUp : MonoBehaviour
 {
     [SerializeField] private Weapon pickUp;
     [SerializeField] protected AudioClip pickUpAudio;
-    [SerializeField] protected float pickUpVolume = 1f;
+    protected float pickUpVolume = 1f;
 
     [SerializeField] private float fadeDuration = .5f; // Time it takes for one fade-in/out cycle
     [SerializeField] private float lifetime = 10f;   // Total time before the pickup is destroyed

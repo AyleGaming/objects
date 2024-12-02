@@ -299,7 +299,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4924309164118763625
 Transform:
   m_ObjectHideFlags: 0
@@ -980,6 +980,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-3290893476875344769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3466985253077390697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23aa12b99b5c90c46897aefe6ccc40d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  blinkText: {fileID: 0}
+  ultimateCooldownSlider: {fileID: 0}
 --- !u!114 &894457397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1015,11 +1030,13 @@ MonoBehaviour:
   movementSpeed: 20
   dieEffect: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7, type: 3}
   ultimateAvailable: 0
+  collisionSound: {fileID: 0}
   currentWeapon: {fileID: 11400000, guid: f16b05492b2a87248a4e3b72df0d9644, type: 2}
   blinkAvailable: 1
   obstacleMask:
     serializedVersion: 2
     m_Bits: 8
+  cooldownUI: {fileID: 0}
   OnUltimateStatusAvailable:
     m_PersistentCalls:
       m_Calls: []
@@ -1031,7 +1048,7 @@ MonoBehaviour:
   ShieldVisual: {fileID: 7789668509784259385}
   gunsActive: 1
   wingGuns: {fileID: 2744238720782742912}
-  ultimateAudio: {fileID: 8300000, guid: 8319b5ab5b7707e4992f05e3dbd052f4, type: 3}
+  ultimateAudio: {fileID: 8300000, guid: 92089ce89a2920c45aa2975c4940f8fd, type: 3}
   ultimateEffectPrefab: {fileID: 2708598583397607911, guid: c249fe5283232c740a3ba04a20383470, type: 3}
   lineMaterial: {fileID: 2100000, guid: 21ce22ee4a68b854f8df2b3f4de750e1, type: 2}
 --- !u!4 &6364966449743258037 stripped

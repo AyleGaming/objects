@@ -33,15 +33,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int totalEnemiesKilled = 0;
     [SerializeField] private int gameLevel = 1;
 
+    [SerializeField] private bool enableEnemiesSpawn = true;
+    [SerializeField] private bool enableMeteorsSpawn = true;
+    [SerializeField] private int baseEnemiesToLevelUp = 10;
+
     private int maxEnemies = 10;
     private float minSpawnDelay = 1f; // Minimum delay for spawning
     private float maxSpawnDelay = 3f; // Maximum delay for spawning
-    private float spawnDelayMultiplier = 0.8f; // Multiplier to reduce delay every 10 levels
+    private float spawnDelayMultiplier = 0.9f; // Multiplier to reduce delay every 10 levels
 
-    private float levelMultiplier = 1.2f; // increase amount of enemies required per level
+    private float levelMultiplier = 1.1f; // increase amount of enemies required per level
     private int levelKillCount = 0; // number of enemies killed per level
-    private int killsForUltimate = 5;
-    private int killsSinceLastUltimate = 0;
+    private float killsForUltimate = 20f;
+    private float killsSinceLastUltimate = 0f;
+    private float meteorSpawnChance = 0.8f;
+
 
     private void OnEnable()
     {
@@ -102,9 +108,6 @@ public class GameManager : MonoBehaviour
         killsSinceLastUltimate++;
         levelKillCount++;
 
-
-        Debug.Log("RemoveEnemyFromList: " + enemyToBeRemoved);
-
         listOfAllEnemiesAlive.Remove(enemyToBeRemoved);
         listOfAllEnemiesAlive.RemoveAll(enemy => enemy == null); // list wasn't being cleaned
 
@@ -135,7 +138,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            float killsToUltimatePercent = (float)killsSinceLastUltimate / killsForUltimate * 100;
+            float killsToUltimatePercent = killsSinceLastUltimate / killsForUltimate * 100;
             OnUltimateStatusChanged.Invoke(killsToUltimatePercent);
         }
 
@@ -164,12 +167,20 @@ public class GameManager : MonoBehaviour
         {
             if (listOfAllEnemiesAlive.Count < maxEnemies)
             {
-                if (UnityEngine.Random.value > 0.5f) // 30% chance to spawn a meteor
+                // Meteor spawning
+                if (UnityEngine.Random.value > meteorSpawnChance) // 30% chance to spawn a meteor
                 {
-                    SpawnEnemies(); // Spawn meteor
+                    if (enableMeteorsSpawn)
+                    {
+                        SpawnMeteors(); // Spawn meteor
+                    }
                 }
-                Enemy enemy = SpawnEnemy(); // Spawn regular enemy
-                listOfAllEnemiesAlive.Add(enemy);
+                if (enableEnemiesSpawn)
+                {
+                    Enemy enemy = SpawnEnemy(); // Spawn regular enemy
+                    listOfAllEnemiesAlive.Add(enemy);
+                }
+                    
             }
             // Wait for the current randomized spawn delay
             float delay = UnityEngine.Random.Range(minSpawnDelay, maxSpawnDelay);
@@ -205,7 +216,7 @@ public class GameManager : MonoBehaviour
         return enemyClone;
     }
 
-    private void SpawnEnemies()
+    private void SpawnMeteors()
     {
         // Spawn a meteor at a random spawn point
         int randomIndex = UnityEngine.Random.Range(0, spawnPoints.Length);
@@ -219,7 +230,7 @@ public class GameManager : MonoBehaviour
 
     private int GetEnemiesRequiredForLevelUp()
     {
-        return Mathf.FloorToInt(3 * Mathf.Pow(levelMultiplier, gameLevel - 1));
+        return Mathf.FloorToInt(baseEnemiesToLevelUp * Mathf.Pow(levelMultiplier, gameLevel - 1));
     }
 
     private void LevelUp()
@@ -237,12 +248,14 @@ public class GameManager : MonoBehaviour
         {
             minSpawnDelay *= spawnDelayMultiplier;
             maxSpawnDelay *= spawnDelayMultiplier;
+            meteorSpawnChance *= spawnDelayMultiplier;
 
             // Clamp values to avoid zero or negative delays
             minSpawnDelay = Mathf.Max(minSpawnDelay, 0.1f);
             maxSpawnDelay = Mathf.Max(maxSpawnDelay, minSpawnDelay + 0.1f);
+            meteorSpawnChance = Mathf.Max(meteorSpawnChance, 0.1f);
 
-            Debug.Log($"New spawn delay: {minSpawnDelay} to {maxSpawnDelay}");
+            Debug.Log($"New spawn delay: {minSpawnDelay} to {maxSpawnDelay}: METEORS: {meteorSpawnChance}: killsForUltimate: {killsForUltimate}");
         }
     }
 

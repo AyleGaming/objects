@@ -17,12 +17,13 @@ public class Player : Character
 
     protected float attackTimer;
     [SerializeField] private GameObject ultimateEffectPrefab;
-
     [SerializeField] private Material lineMaterial;
 
     private Vector2 screenBounds;
     private float objectWidth;
     private float objectHeight;
+    public PlayerCooldownUI cooldownUI;
+
 
     void Awake()
     {
@@ -84,6 +85,18 @@ public class Player : Character
     {
         base.Update();
         KeepPlayerOnScreen();
+
+        float remainingCooldown = Mathf.Max(0, nextBlinkTime - Time.time); // Time remaining until blink is available
+
+        if (remainingCooldown > 0)
+        {
+            cooldownUI.UpdateTeleportCooldown(remainingCooldown);
+        }
+        else
+        {
+            cooldownUI.UpdateTeleportCooldown(0f);
+            blinkAvailable = true;
+        }
     }
 
     public override void UltimateAttack()
@@ -161,7 +174,6 @@ public class Player : Character
             enemy.PlayDeathEffect();
         }
     }
-
 
     private void UpdateShieldVisual(float shieldValue)
     {

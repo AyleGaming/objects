@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using TMPro;
 
 public class PlayerCooldownUI : MonoBehaviour
@@ -7,6 +8,7 @@ public class PlayerCooldownUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI blinkText;
     [SerializeField] private Transform player;  // Player's transform
     [SerializeField] private RectTransform uiRectTransform;  // The RectTransform of the PlayerCooldownUI
+    [SerializeField] private GameObject UltCDUpEffect;
     private Vector3 offset = new (0, -0.75f, 0);  // Offset to position UI above the player
 
     void Start()
@@ -37,7 +39,8 @@ public class PlayerCooldownUI : MonoBehaviour
     {
         if (score <= 0)
         {
-            blinkText.text = "READY".ToString();
+            blinkText.text = "RDY".ToString();
+            
         }
         else
         {
@@ -45,10 +48,29 @@ public class PlayerCooldownUI : MonoBehaviour
         }
     }
 
+    public void UpdateUltStatus()
+    {
+        GameObject ultStatus = Instantiate(UltCDUpEffect, player.position, Quaternion.identity);
+        PlayEffectAndCleanup(ultStatus);
+    }
 
     private void UpdateCooldownUI()
     {
         // Call UpdateTeleportCooldown and UpdateUltimateCooldown from external logic
         // This ensures sliders are always up-to-date
+    }
+
+    public void PlayEffectAndCleanup(GameObject ultStatus)
+    {
+        StartCoroutine(CleanupAfterDelay(ultStatus));
+    }
+
+    private IEnumerator CleanupAfterDelay(GameObject ultStatus)
+    {
+        // Optional: Wait for an animation, particle system, or other effect to play
+        yield return new WaitForSeconds(3f);
+
+        // Destroy the GameObject
+        Destroy(ultStatus);
     }
 }

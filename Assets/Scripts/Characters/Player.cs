@@ -50,7 +50,6 @@ public class Player : Character
 
         Camera mainCamera = Camera.main;
         screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
-
         SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         if (spriteRenderer != null)
@@ -218,6 +217,15 @@ public class Player : Character
     private void ResetWingGuns()
     {
         SetWingGunsActive(1);
+    }
+
+    public override void SetUltimateAvailable(bool enabled)
+    {
+        base.SetUltimateAvailable(enabled);
+        if (enabled)
+        {
+            cooldownUI.UpdateUltStatus();
+        }
     }
 
 }

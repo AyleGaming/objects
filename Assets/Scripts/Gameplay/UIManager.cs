@@ -93,7 +93,6 @@ public class UIManager : MonoBehaviour
 
 	}
 
-
 	void Update()
 	{
 		// Increment elapsed time
@@ -140,6 +139,8 @@ public class UIManager : MonoBehaviour
 
 	public void UpdateUltiValue(float score)
 	{
+		Debug.Log($"ULT: {score}");
+
 		ultimateProgressBarImage.fillAmount = score / 100;
 		ultiText.text = (Mathf.Ceil(score)).ToString() + "%";
 	}
@@ -153,7 +154,6 @@ public class UIManager : MonoBehaviour
 	{
 		levelText.text = score.ToString();
 	}
-
 
 	public void UpdateTimeValue(string score)
 	{

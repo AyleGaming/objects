@@ -22,9 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PickUp[] pickUpPrefabs;
     [SerializeField] private GameObject pickUpEffect;
        
-    [SerializeField] private Enemy enemyPrefab;
     [SerializeField] private Transform[] spawnPointsArray;
-    [SerializeField] private Enemy[] enemyPrefabs;
     [SerializeField] private List<Enemy> listOfAllEnemiesAlive;
 
     [SerializeField] private Meteor[] meteorPrefabs; // Assign in Inspector
@@ -133,10 +131,11 @@ public class GameManager : MonoBehaviour
 
         if (totalEnemiesKilled % killsForUltimate == 0)
         {
+            Debug.Log($"totalEnemiesKilled: {totalEnemiesKilled}");
             EnablePlayerUltimate(true);
         }
 
-        if(killsSinceLastUltimate > killsForUltimate)
+        if(killsSinceLastUltimate >= killsForUltimate)
         {
             OnUltimateStatusChanged.Invoke(100f);
         }
@@ -241,7 +240,7 @@ public class GameManager : MonoBehaviour
         OnLevelPercentStatusChanged.Invoke(0f);
 
         maxEnemies += 2;
-        Debug.Log($"Level Up! Current Level: {gameLevel}");
+//        Debug.Log($"Level Up! Current Level: {gameLevel}");
 
         // Every 10 levels, decrease the spawn delay range
         if (gameLevel % 2 == 0)
@@ -256,7 +255,7 @@ public class GameManager : MonoBehaviour
             meteorSpawnChance = Mathf.Max(meteorSpawnChance, 0.1f);
             DetermineEnemyType();
 
-            Debug.Log($"New spawn delay: {minSpawnDelay} to {maxSpawnDelay}: METEORS: {meteorSpawnChance}: killsForUltimate: {killsForUltimate}");
+//            Debug.Log($"New spawn delay: {minSpawnDelay} to {maxSpawnDelay}: METEORS: {meteorSpawnChance}: killsForUltimate: {killsForUltimate}");
         }
     }
 

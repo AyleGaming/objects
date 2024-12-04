@@ -264,46 +264,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fc1ee62565797574ebf9990aa3d60965, type: 3}
   - {fileID: 21300000, guid: c5d7635a0711f0c47825e4017cd136b3, type: 3}
   - {fileID: 21300000, guid: 0e64b30241f14ec4097fd83a1fede17a, type: 3}
-  - {fileID: 21300000, guid: a98de633faadb0743ab33c05f718762c, type: 3}
-  - {fileID: 21300000, guid: fa972633207d12c418d9900dc04d3256, type: 3}
-  - {fileID: 21300000, guid: e5ba53587401647498a18fbe0249787d, type: 3}
-  - {fileID: 21300000, guid: c009953ee1a97bd47aa4dd01a7d00841, type: 3}
-  - {fileID: 21300000, guid: 356850331cc99dc47b9255abc6b441ba, type: 3}
-  - {fileID: 21300000, guid: 567008e101b258643add6441c8586fee, type: 3}
-  - {fileID: 21300000, guid: b53cf23194a2f64499f2e1c2130d8bc5, type: 3}
-  - {fileID: 21300000, guid: 4d5ac4d0e80c6d74092a9dc6cd0f594a, type: 3}
-  - {fileID: 21300000, guid: c2cf1cb34b16e9b40982158e45f82dc1, type: 3}
-  - {fileID: 21300000, guid: cf8e50fe26daf084fb0b6dc03ed3fab1, type: 3}
-  - {fileID: 21300000, guid: a7f874709a213ab4c91010daa7dc3c5c, type: 3}
-  - {fileID: 21300000, guid: ce290f4e923416a4cab11d8b04296328, type: 3}
-  - {fileID: 21300000, guid: 1e567dcf03c2d5c4aaeee9fd1baefcba, type: 3}
-  - {fileID: 21300000, guid: aef64094c474fe8488ce3012e39a587e, type: 3}
-  - {fileID: 21300000, guid: 810cdd1555ff7854caee79900cc2a06c, type: 3}
-  - {fileID: 21300000, guid: 56ef2bc4f78c3634191ff05a5408451f, type: 3}
-  - {fileID: 21300000, guid: ba03150f002ca4145918514cb8cbd327, type: 3}
-  - {fileID: 21300000, guid: 4e4be4e2b154bf0499e50c05b266e33e, type: 3}
-  - {fileID: 21300000, guid: 9f7965afd6b57c749b9badce0a2be5f6, type: 3}
-  - {fileID: 21300000, guid: 8219467f5ee842e468efde7fd4a0a770, type: 3}
-  - {fileID: 21300000, guid: d5a0bdabb6b4a6148a3194127a212d25, type: 3}
-  - {fileID: 21300000, guid: fa32d58c5c819a34193f65dac2e67124, type: 3}
-  - {fileID: 21300000, guid: e62bd79d5815ff540b037fc02f9bd46e, type: 3}
-  - {fileID: 21300000, guid: a24ab9eeaff9c1044ac6bfb9ad2876cd, type: 3}
-  - {fileID: 21300000, guid: 72e06a323315ef4428ba9b5aef7cb8b1, type: 3}
-  - {fileID: 21300000, guid: 48bff2624c937914da6fb6c415e99b10, type: 3}
-  - {fileID: 21300000, guid: 719b2fcab639c0c4b9990428a41c3d45, type: 3}
-  - {fileID: 21300000, guid: 08a6a8a1adb3d254e8ad396e4503f06f, type: 3}
-  - {fileID: 21300000, guid: 7b291a16f0b017d4f9e0846bddb3c7bc, type: 3}
-  - {fileID: 21300000, guid: cd1f33824be0cfd43bc933b728f8516b, type: 3}
-  - {fileID: 21300000, guid: 078fbf5b002083443a891111f63220cb, type: 3}
-  - {fileID: 21300000, guid: 7848a4b5e0fc78f40be558d395260735, type: 3}
-  - {fileID: 21300000, guid: d09e69f51bd9dfa429eb650fc4dba983, type: 3}
-  - {fileID: 21300000, guid: b1b3b9129456a0b41beb741ac4f4750d, type: 3}
-  - {fileID: 21300000, guid: 61654d4dbc934eb4a8f54ff167e3710b, type: 3}
-  - {fileID: 21300000, guid: bd821274e48f60049a315a4e6cf6bb71, type: 3}
-  - {fileID: 21300000, guid: ef32770ca1a01f9488426978efd4fa0e, type: 3}
-  - {fileID: 21300000, guid: 5611466e8b724e44d9b8b6452c587c3b, type: 3}
-  - {fileID: 21300000, guid: 56b00594822fdfd4889cabecfbe9ae40, type: 3}
-  - {fileID: 21300000, guid: 50559eaafbcd40f47af14c0da9bb5a06, type: 3}
 --- !u!114 &128005244 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1793180992856816771, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
@@ -408,6 +368,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 149167303}
+  - component: {fileID: 149167304}
   m_Layer: 0
   m_Name: MusicManager
   m_TagString: Untagged
@@ -431,6 +392,21 @@ Transform:
   m_Father: {fileID: 167889294}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &149167304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149167302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6f278902f71cd04ba8c10853e3245d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 1192974668}
+  track1: {fileID: 8300000, guid: 1ece654e742c55b4ebb737b648cdee70, type: 3}
+  track2: {fileID: 8300000, guid: 2a436371242130f4c89de3d72a102db5, type: 3}
 --- !u!4 &154413480 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8820397340291358861, guid: 1700ba9901e6d344e9bfe773f3436f53, type: 3}
@@ -770,15 +746,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabsBySuperType:
   - baseEnemies:
-    - {fileID: -5217728891179636085, guid: 7a1f9c460754ba347bc31154f9874a12, type: 3}
     - {fileID: -5217728891179636085, guid: ceedd93fe2a81ad48bc4f68fe4b8c11c, type: 3}
+    - {fileID: 1915355388892769058, guid: 7a1f9c460754ba347bc31154f9874a12, type: 3}
     - {fileID: -3732254815573782978, guid: a8c76b58ff14cfe4b82afe2f707cbfe5, type: 3}
-    insectoidEnemies:
-    - {fileID: -5217728891179636085, guid: 7a1f9c460754ba347bc31154f9874a12, type: 3}
-    - {fileID: -5217728891179636085, guid: ceedd93fe2a81ad48bc4f68fe4b8c11c, type: 3}
-    abyssalEnemies:
-    - {fileID: -5217728891179636085, guid: 7a1f9c460754ba347bc31154f9874a12, type: 3}
-    - {fileID: -5217728891179636085, guid: ceedd93fe2a81ad48bc4f68fe4b8c11c, type: 3}
+    - {fileID: 8046249719531917910, guid: 2b7e5401cc48b93489ac62f8342d8c44, type: 3}
+    - {fileID: -8412339949711716325, guid: 9168a32f7e1d9f044b1a5504aaa71dca, type: 3}
+    - {fileID: 3317040970377392307, guid: 8b2bf9f96a6f1914597c6f85d3298be6, type: 3}
+    insectoidEnemies: []
+    abyssalEnemies: []
 --- !u!4 &525458422
 Transform:
   m_ObjectHideFlags: 0
@@ -1145,6 +1120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthText: {fileID: 1538923741}
   healthSlider: {fileID: 811128674}
+  healthBarImage: {fileID: 2056375483}
   shieldText: {fileID: 231696339}
   shieldSlider: {fileID: 653129403}
   levelText: {fileID: 1247424061}
@@ -1560,7 +1536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1192974667
 Transform:
   m_ObjectHideFlags: 0
@@ -1692,9 +1668,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 935746958}
     - target: {fileID: 894457400, guid: ce7b6abdf394c514ea8c1b8c35c38f80, type: 3}
+      propertyPath: blinkDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 894457400, guid: ce7b6abdf394c514ea8c1b8c35c38f80, type: 3}
+      propertyPath: blinkSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 78fa16430317c0a4e9f6b68e31e79b53, type: 3}
+    - target: {fileID: 894457400, guid: ce7b6abdf394c514ea8c1b8c35c38f80, type: 3}
       propertyPath: cooldownUI
       value: 
       objectReference: {fileID: 1728539683}
+    - target: {fileID: 894457400, guid: ce7b6abdf394c514ea8c1b8c35c38f80, type: 3}
+      propertyPath: blinkPrefab
+      value: 
+      objectReference: {fileID: 7532319926767282671, guid: 5f33d31487fd7724d9f230634117c5c7, type: 3}
     - target: {fileID: 3391740537194194348, guid: ce7b6abdf394c514ea8c1b8c35c38f80, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2198,7 +2186,6 @@ MonoBehaviour:
   - {fileID: 4005377615474982160, guid: b39620a7fe605c342b3949077dd13c0d, type: 3}
   - {fileID: 8870319007015241804, guid: 4f52ea049fa65a84a90a97d932114136, type: 3}
   pickUpEffect: {fileID: 8525990746615576120, guid: b85d21f3b8fed714bacf0c4fd50fa512, type: 3}
-  enemyPrefab: {fileID: 6850867291022854328, guid: a9839cd548205614890d17dc91fdc838, type: 3}
   spawnPointsArray:
   - {fileID: 1602518710}
   - {fileID: 154413480}
@@ -2212,9 +2199,6 @@ MonoBehaviour:
   - {fileID: 483560482}
   - {fileID: 710337167}
   - {fileID: 1712768118}
-  enemyPrefabs:
-  - {fileID: -5217728891179636085, guid: ceedd93fe2a81ad48bc4f68fe4b8c11c, type: 3}
-  - {fileID: -5217728891179636085, guid: 7a1f9c460754ba347bc31154f9874a12, type: 3}
   listOfAllEnemiesAlive: []
   meteorPrefabs:
   - {fileID: 6502467346352374538, guid: 9f0f8c4ddecb1d24888c6a3cc0f507db, type: 3}
@@ -2245,10 +2229,10 @@ MonoBehaviour:
   gameLevel: 1
   enableEnemiesSpawn: 1
   enableMeteorsSpawn: 1
-  baseEnemiesToLevelUp: 3
+  baseEnemiesToLevelUp: 5
   selectedEnemyType: 0
   selectedEnemySuperType: 0
-  killsForUltimate: 3
+  killsForUltimate: 10
   enemyManager: {fileID: 525458421}
 --- !u!4 &1597722990
 Transform:
@@ -2320,6 +2304,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2017272175}
+    - target: {fileID: 799937298711878119, guid: 622882badc178e741bd2d9ca79802f15, type: 3}
+      propertyPath: UltCDUpEffect
+      value: 
+      objectReference: {fileID: 2883797502249945402, guid: 395dca8caaf558d4381acff5fe770d27, type: 3}
     - target: {fileID: 799937298711878119, guid: 622882badc178e741bd2d9ca79802f15, type: 3}
       propertyPath: uiRectTransform
       value: 
@@ -2957,6 +2945,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3391740537194194348, guid: ce7b6abdf394c514ea8c1b8c35c38f80, type: 3}
   m_PrefabInstance: {fileID: 1198109929}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2056375483 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5140626680143889666, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
+  m_PrefabInstance: {fileID: 1339228756}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2078861269
 GameObject:
   m_ObjectHideFlags: 0

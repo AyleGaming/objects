@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 using System;
 
 public class Character : MonoBehaviour
@@ -12,6 +13,10 @@ public class Character : MonoBehaviour
     [SerializeField] private GameObject dieEffect;
     [SerializeField] public bool ultimateAvailable = false;
     [SerializeField] protected AudioClip collisionSound;
+    [SerializeField] protected AudioClip blinkSound;
+    [SerializeField] private GameObject blinkPrefab; // Assign your portal prefab in the Inspector
+    [SerializeField] private float blinkDelay = 0.5f; // Time before the player blinks to the position
+
     public Health healthValue;
     public Weapon currentWeapon;
 
@@ -48,8 +53,6 @@ public class Character : MonoBehaviour
     {
         if (isBlinking) return;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        //angle = Vector2.Angle(Vector2.right, direction);
-
         myRigidBody.SetRotation(angle - 90f);
     }
 
@@ -90,13 +93,37 @@ public class Character : MonoBehaviour
             }
 
             // Teleport the player
-            myRigidBody.MovePosition(targetPosition);
-
-            // Re-enable movement after blink
-            Invoke(nameof(EndBlink), 0.1f);
+            StartCoroutine(BlinkWithDelay(targetPosition));
+            PlaySoundAtPosition(blinkSound, transform.position, 1f, 1f);
         }
      
     }
+
+    private IEnumerator BlinkWithDelay(Vector3 targetPosition)
+    {
+        // Step 1: Spawn the portal icon at the target position
+        GameObject blink = Instantiate(blinkPrefab, targetPosition, Quaternion.identity);
+
+        // Step 2: Fade in the portal (if applicable)
+        Blink portalScript = blink.GetComponent<Blink>();
+        if (portalScript != null)
+        {
+            portalScript.FadeIn();
+        }
+
+        // Step 3: Wait for the delay
+        yield return new WaitForSeconds(blinkDelay);
+
+        // Step 4: Move the player to the target position
+        myRigidBody.MovePosition(targetPosition);
+
+        // Optional: Destroy the portal icon after teleportation
+        Destroy(blink);
+        
+        // Re-enable movement after blink
+        Invoke(nameof(EndBlink), 0.1f);
+    }
+
     private void EndBlink()
     {
         isBlinking = false; // Re-enable movement
@@ -105,7 +132,9 @@ public class Character : MonoBehaviour
         blinkAvailable = false;
     }
 
-    public void SetUltimateAvailable(bool enabled)
+
+
+    public virtual void SetUltimateAvailable(bool enabled)
     {
         ultimateAvailable = enabled;
     }

@@ -884,6 +884,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6714998791417414034, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6812313291857078769, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
@@ -1000,6 +1004,7 @@ MonoBehaviour:
   blinkText: {fileID: 0}
   player: {fileID: 3391740537194194348}
   uiRectTransform: {fileID: 0}
+  UltCDUpEffect: {fileID: 0}
 --- !u!114 &894457397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1036,6 +1041,9 @@ MonoBehaviour:
   dieEffect: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7, type: 3}
   ultimateAvailable: 0
   collisionSound: {fileID: 0}
+  blinkSound: {fileID: 0}
+  blinkPrefab: {fileID: 0}
+  blinkDelay: 0.5
   currentWeapon: {fileID: 11400000, guid: f16b05492b2a87248a4e3b72df0d9644, type: 2}
   blinkAvailable: 1
   obstacleMask:

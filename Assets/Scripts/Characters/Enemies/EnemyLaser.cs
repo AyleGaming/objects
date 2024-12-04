@@ -18,7 +18,6 @@ public class EnemyLaser : Enemy
     protected override void Update()
     {
         base.Update();
-        RotateUFO();
         DrawLaserIfPlayerWithinDistanceThreshold();
     }
 
@@ -56,10 +55,5 @@ public class EnemyLaser : Enemy
         }
     }
 
-    private void RotateUFO()
-    {
-        // Rotate around the Z-axis for 2D rotation
-        transform.Rotate(0f, 0f, rotationSpeed * Time.deltaTime);
-    }
 
 }

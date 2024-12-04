@@ -8,6 +8,8 @@ public class Enemy : Character
     [SerializeField] private EnemyType enemyType;
     [SerializeField] private bool isMiniboss;
     [SerializeField] private bool isBoss;
+    [SerializeField] private AudioClip attackSound; // Sounds for attack
+    [SerializeField] private int attackDamage = 3; 
 
     protected Player target;
     protected float attackTimer;
@@ -28,15 +30,11 @@ public class Enemy : Character
         healthValue.SetShieldValue(0);
         target = FindObjectOfType<Player>();
 
-       
-
         // Check if the script is null and log a message for debugging
         if (enemyVariantScript == null)
         {
             Debug.LogError("EnemyVariant is null in SetupEnemy for " + gameObject.name);
         }
-
-
     }
 
     public void SetupEnemy(EnemyType enemyType, int variant)
@@ -74,7 +72,11 @@ public class Enemy : Character
         base.Attack();
         if(attackTimer >= attackCooldown)
         {
-            target.healthValue.DecreaseHealth(1);
+            if (attackSound != null)
+            {
+                PlaySoundAtPosition(attackSound, transform.position, 1.2f, 1.4f);
+            }
+            target.healthValue.DecreaseHealth(attackDamage);
             attackTimer = 0;
         }
         else

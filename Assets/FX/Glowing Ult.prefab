@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2708598583165999484}
   - component: {fileID: 2708598583165999486}
   - component: {fileID: 2708598583165999487}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Flare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4893,7 +4893,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2708598583372993826}
   - component: {fileID: 2708598583372993827}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4989,7 +4989,7 @@ GameObject:
   - component: {fileID: 2708598583397607897}
   - component: {fileID: 2708598583397607910}
   - component: {fileID: 2708598583397607899}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Glowing Ult
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5005,7 +5005,7 @@ Transform:
   m_GameObject: {fileID: 2708598583397607911}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2708598584738834257}
@@ -9894,7 +9894,7 @@ GameObject:
   - component: {fileID: 2708598584241629779}
   - component: {fileID: 2708598584241629781}
   - component: {fileID: 2708598584241629778}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14777,7 +14777,7 @@ GameObject:
   - component: {fileID: 2708598584738834257}
   - component: {fileID: 2708598584738834259}
   - component: {fileID: 2708598584738834256}
-  m_Layer: 3
+  m_Layer: 5
   m_Name: Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}

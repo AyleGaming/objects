@@ -22,7 +22,9 @@ public class Player : Character
     private Vector2 screenBounds;
     private float objectWidth;
     private float objectHeight;
+
     public PlayerCooldownUI cooldownUI;
+    public UIManager uiManager; 
 
 
     void Awake()
@@ -91,12 +93,20 @@ public class Player : Character
         if (remainingCooldown > 0)
         {
             cooldownUI.UpdateTeleportCooldown(remainingCooldown);
+            uiManager.UpdateBlinkValue(remainingCooldown);
         }
         else
         {
             cooldownUI.UpdateTeleportCooldown(0f);
+            uiManager.UpdateBlinkValue(0f);
             blinkAvailable = true;
         }
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(playerWeaponTipsArray[0].transform.position, 1f);
     }
 
     public override void UltimateAttack()

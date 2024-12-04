@@ -25,7 +25,6 @@ public class Meteor : Character
         Large
     }
 
-
     private void Awake()
     {
         // Assign a random sprite

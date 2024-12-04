@@ -5,13 +5,19 @@ public class EnemyExploder : Enemy
     private float speedMultiplier = 1.0f; // Initial speed multiplier
     private float accelerationRate = 0.1f; // Rate at which speed increases over time
     private int explodeDamage = 15;
+    [SerializeField] private GameObject moveEffect;
+    private GameObject particleEffectInstance;
 
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
         healthValue.SetHealthValue(50);
+
+        particleEffectInstance = Instantiate(moveEffect, transform.position, Quaternion.identity);
+        particleEffectInstance.transform.SetParent(transform); // Attach it to the enemy's transform
     }
+
 
     public override void Move(Vector2 direction)
     {
@@ -20,6 +26,8 @@ public class EnemyExploder : Enemy
 
         // Apply the scaled movement
         myRigidBody.AddForce(movementSpeed * speedMultiplier * Time.deltaTime * direction, ForceMode2D.Impulse);
+
+        particleEffectInstance.transform.position = transform.position;
     }
 
     public override void Attack()

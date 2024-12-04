@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
 {
 	[SerializeField] private TextMeshProUGUI healthText;
 	[SerializeField] private Slider healthSlider;
+	[SerializeField] private Image healthBarImage;
 
 	[SerializeField] private TextMeshProUGUI shieldText;
 	[SerializeField] private Slider shieldSlider;
@@ -18,9 +19,14 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private Slider levelSlider;
 
 	[SerializeField] private TextMeshProUGUI scoreText;
-	[SerializeField] private TextMeshProUGUI ultiText;
 	[SerializeField] private TextMeshProUGUI timeText;
+
 	[SerializeField] private TextMeshProUGUI blinkText;
+	[SerializeField] private Image blinkProgressBarImage; // Assign your circular Image here
+
+	[SerializeField] private TextMeshProUGUI ultiText;
+	[SerializeField] private Image ultimateProgressBarImage; // Assign your circular Image here
+	[Range(0f, 1f)] public float progress = 0f; // Progress value (0 = empty, 1 = full)
 
 	public float elapsedTime = 0f;
 
@@ -107,6 +113,8 @@ public class UIManager : MonoBehaviour
 	{
 		healthText.text = score.ToString();
 		healthSlider.value = score;
+		healthBarImage.color = Color.Lerp(Color.red, Color.green, healthSlider.value / healthSlider.maxValue);
+
 	}
 
 	public void UpdateShieldValue(float score)
@@ -119,22 +127,21 @@ public class UIManager : MonoBehaviour
 	{
 		if(score <= 0)
         {
-			blinkText.text = "READY".ToString();
+			blinkText.text = "RDY".ToString();
 		} else
         {
-			blinkText.text = score.ToString();
+			blinkText.text = score.ToString("F2");
 		}
+
+		blinkProgressBarImage.fillAmount = 1 - (score / 5);
+
 	}
+
 
 	public void UpdateUltiValue(float score)
 	{
-		if(score >= 100)
-        {
-			ultiText.text = "READY".ToString();
-        } else
-        {
-			ultiText.text = score.ToString() + "%";
-		}
+		ultimateProgressBarImage.fillAmount = score / 100;
+		ultiText.text = (Mathf.Ceil(score)).ToString() + "%";
 	}
 
 	public void UpdateLevelSliderValue(float score)

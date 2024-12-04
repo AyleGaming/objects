@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool enableMeteorsSpawn = true;
     [SerializeField] private int baseEnemiesToLevelUp = 10;
 
+    [SerializeField] private EnemyType selectedEnemyType = EnemyType.Earth;
+    [SerializeField] private EnemySuperType selectedEnemySuperType = EnemySuperType.Base;
+
     private int maxEnemies = 10;
     private float minSpawnDelay = 1f; // Minimum delay for spawning
     private float maxSpawnDelay = 3f; // Maximum delay for spawning
@@ -44,10 +47,11 @@ public class GameManager : MonoBehaviour
 
     private float levelMultiplier = 1.1f; // increase amount of enemies required per level
     private int levelKillCount = 0; // number of enemies killed per level
-    private float killsForUltimate = 20f;
+    [SerializeField] float killsForUltimate = 20f;
     private float killsSinceLastUltimate = 0f;
-    private float meteorSpawnChance = 0.8f;
+    private float meteorSpawnChance = 0.8f; 
 
+    public EnemyManager enemyManager;
 
     private void OnEnable()
     {
@@ -142,6 +146,7 @@ public class GameManager : MonoBehaviour
             OnUltimateStatusChanged.Invoke(killsToUltimatePercent);
         }
 
+
         float killPercentToLevel = ((float)levelKillCount / (float)requiredEnemies) * 100;
         OnLevelPercentStatusChanged.Invoke(killPercentToLevel);
 
@@ -177,7 +182,7 @@ public class GameManager : MonoBehaviour
                 }
                 if (enableEnemiesSpawn)
                 {
-                    Enemy enemy = SpawnEnemy(); // Spawn regular enemy
+                    Enemy enemy = SpawnNewEnemy(); // Spawn regular enemy
                     listOfAllEnemiesAlive.Add(enemy);
                 }
                     
@@ -189,30 +194,26 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private Enemy SpawnEnemy()
+    private void DetermineEnemyType()
+    {
+        selectedEnemyType = (EnemyType)UnityEngine.Random.Range(0, System.Enum.GetValues(typeof(EnemyType)).Length);
+        Debug.Log($"NEW ENEMYTYPE: {selectedEnemyType}");
+    }
+
+    public void DetermineEnemySuperType()
+    {
+        // Change to the next SuperType in the sequence
+        selectedEnemySuperType = (EnemySuperType)(((int)selectedEnemySuperType + 1) % Enum.GetValues(typeof(EnemySuperType)).Length);
+        Debug.Log($"NEW SUPERTYPE: {selectedEnemySuperType}");
+    }
+
+    private Enemy SpawnNewEnemy()
     {
         // Select a random spawn point
         int randomIndex = UnityEngine.Random.Range(0, spawnPointsArray.Length);
         Transform randomSpawnPoint = spawnPointsArray[randomIndex];
-
-        // Determine the enemy type to spawn
-        Enemy enemyToSpawn;
-
-        if (gameLevel <= enemyPrefabs.Length)
-        {
-            // Spawn the same enemy for the current level (1-based indexing)
-            enemyToSpawn = enemyPrefabs[gameLevel - 1];
-        }
-        else
-        {
-            // If beyond the number of enemy types, choose randomly from all available
-            enemyToSpawn = enemyPrefabs[UnityEngine.Random.Range(0, enemyPrefabs.Length)];
-        }
-
-        // Instantiate and track the spawned enemy
-        Enemy enemyClone = Instantiate(enemyToSpawn, randomSpawnPoint.position, randomSpawnPoint.rotation);
-        listOfAllEnemiesAlive.Add(enemyClone);
-
+        Enemy enemyClone = enemyManager.SpawnEnemy(randomSpawnPoint, selectedEnemyType, selectedEnemySuperType);
+              
         return enemyClone;
     }
 
@@ -224,7 +225,6 @@ public class GameManager : MonoBehaviour
 
         Meteor meteorToSpawn = meteorPrefabs[UnityEngine.Random.Range(0, meteorPrefabs.Length)];
         Instantiate(meteorToSpawn, spawnPoint.position, Quaternion.identity);
-        
     }
 
 
@@ -254,6 +254,7 @@ public class GameManager : MonoBehaviour
             minSpawnDelay = Mathf.Max(minSpawnDelay, 0.1f);
             maxSpawnDelay = Mathf.Max(maxSpawnDelay, minSpawnDelay + 0.1f);
             meteorSpawnChance = Mathf.Max(meteorSpawnChance, 0.1f);
+            DetermineEnemyType();
 
             Debug.Log($"New spawn delay: {minSpawnDelay} to {maxSpawnDelay}: METEORS: {meteorSpawnChance}: killsForUltimate: {killsForUltimate}");
         }

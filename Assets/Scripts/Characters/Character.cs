@@ -105,7 +105,6 @@ public class Character : MonoBehaviour
         blinkAvailable = false;
     }
 
-
     public void SetUltimateAvailable(bool enabled)
     {
         ultimateAvailable = enabled;

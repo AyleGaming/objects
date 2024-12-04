@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d710bb4ea9c4ff40bf72339a35bc348, type: 3}
+  m_Name: Spitter
+  m_EditorClassIdentifier: 
+  damage: 5
+  ammo: 100
+  fireRate: 1
+  ammoFaction: 1
+  volume: 0.3
+  fireSounds:
+  - {fileID: 8300000, guid: 50230da1bc23a0440aff4d9f1b90d83b, type: 3}
+  projectilePrefab: {fileID: 3670970290874687472, guid: b780ec8103e1be343b66dd4725d366cd, type: 3}

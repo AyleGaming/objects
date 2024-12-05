@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15256b62cb32df94da860e58bf5636f2, type: 3}
+  m_Name: _Blink
+  m_EditorClassIdentifier: 
+  powerName: Blink
+  description: 'Teleport to cursor: 10s CD'
+  icon: {fileID: 21300000, guid: 86de2ebaf8e7543438b1cbc301a90db3, type: 3}
+  category: 2
+  unlockLevel: 1
+  active: 0
+  hasCoolDown: 1
+  coolDown: 10
+  sound: {fileID: 8300000, guid: 78fa16430317c0a4e9f6b68e31e79b53, type: 3}
+  useEffect: {fileID: 0}

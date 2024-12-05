@@ -1065,6 +1065,26 @@ MonoBehaviour:
   lineMaterial: {fileID: 2100000, guid: 21ce22ee4a68b854f8df2b3f4de750e1, type: 2}
   cooldownUI: {fileID: 0}
   uiManager: {fileID: 0}
+--- !u!114 &-9088113455055054838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3466985253077390697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d5d4c545a6f4f4388db618527b2a35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  shield: 100
+  damage: 10
+  speed: 5
+  attackSpeed: 1.8
+  blinkCooldown: 5
+  hasUltimateAbility: 0
+  hasBlinkAbility: 0
 --- !u!4 &6364966449743258037 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8508511202554977809, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}

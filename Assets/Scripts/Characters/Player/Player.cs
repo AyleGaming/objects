@@ -4,13 +4,13 @@ using System.Collections;
 
 public class Player : Character
 {
-    public static Player Instance;
+    public static Player Instance { get; private set; }
 
     public UnityEvent<bool> OnUltimateStatusAvailable;
     [SerializeField] private Transform playerWeaponTip;
     [SerializeField] private Transform[] playerWeaponTipsArray;
     [SerializeField] private GameObject ShieldVisual;
-    [SerializeField] private int gunsActive;
+    [SerializeField] private int gunsActive = 1;
     [SerializeField] private GameObject wingGuns;
 
     [SerializeField] protected AudioClip ultimateAudio;
@@ -24,30 +24,33 @@ public class Player : Character
     private float objectHeight;
 
     public PlayerCooldownUI cooldownUI;
-    public UIManager uiManager; 
+    public UIManager uiManager;
+    private PlayerStats playerStats;
 
-
-    void Awake()
+    private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
+            return;
         }
+
+        Instance = this;
+
+        playerStats = GetComponent<PlayerStats>();
+        if (playerStats == null)
+        {
+            Debug.LogError("PlayerStats component is missing on Player!");
+        }
+
+      
     }
+
+    public PlayerStats Stats => playerStats;
 
     protected override void Start()
     {
         base.Start();
-
-        healthValue.OnShieldChanged.AddListener(UpdateShieldVisual);
-        UpdateShieldVisual(healthValue.GetShieldValue());
-        GameObject wingGuns = GameObject.FindWithTag("WingGuns");
-        gunsActive = 1;
-
         Camera mainCamera = Camera.main;
         screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
         SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -62,6 +65,10 @@ public class Player : Character
         {
             Debug.LogError("No SpriteRenderer found on the Player or its children!");
         }
+
+        healthValue.OnShieldChanged.AddListener(UpdateShieldVisual);
+        UpdateShieldVisual(healthValue.GetShieldValue());
+        GameObject wingGuns = GameObject.FindWithTag("WingGuns");
     }
 
     public override void Attack()
@@ -102,11 +109,6 @@ public class Player : Character
         }
     }
 
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(playerWeaponTipsArray[0].transform.position, 1f);
-    }
 
     public override void UltimateAttack()
     {
@@ -200,7 +202,7 @@ public class Player : Character
         if (gunsActiveCount > 1)
         {
             CancelInvoke("ResetWingGuns");
-            Invoke("ResetWingGuns", 10f);
+            Invoke(nameof(ResetWingGuns), 10f);
         }
         
     }

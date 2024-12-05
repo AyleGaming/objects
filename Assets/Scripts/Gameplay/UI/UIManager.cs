@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
-
+using TMPro;
 
 
 public class UIManager : MonoBehaviour
@@ -139,8 +138,6 @@ public class UIManager : MonoBehaviour
 
 	public void UpdateUltiValue(float score)
 	{
-		Debug.Log($"ULT: {score}");
-
 		ultimateProgressBarImage.fillAmount = score / 100;
 		ultiText.text = (Mathf.Ceil(score)).ToString() + "%";
 	}

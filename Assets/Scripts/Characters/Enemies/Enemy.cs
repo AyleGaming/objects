@@ -87,7 +87,7 @@ public class Enemy : Character
 
     public override void PlayDeathEffect()
     {
-        GameManager.instance.RemoveEnemyFromList(this);
+        GameManager.Instance.RemoveEnemyFromList(this);
         base.PlayDeathEffect();
         if (collisionSound != null)
         {

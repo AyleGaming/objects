@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-   
+    public static GameManager Instance { get; private set; }
+
     public UnityEvent OnGameStart;
     public UnityEvent OnGameOver;
 
@@ -47,9 +47,29 @@ public class GameManager : MonoBehaviour
     private int levelKillCount = 0; // number of enemies killed per level
     [SerializeField] float killsForUltimate = 20f;
     private float killsSinceLastUltimate = 0f;
-    private float meteorSpawnChance = 0.8f; 
+    private float meteorSpawnChance = 0.8f;
 
+    [SerializeField] private PowerLibrary powerLibrary;
     public EnemyManager enemyManager;
+
+    private void Awake()
+    {
+        // Ensure there's only one instance of GameManager
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // Prevent duplicate GameManagers
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject); // Persist between scenes
+    }
+
+    void Start()
+    {
+        OnGameManagerInit?.Invoke(this);
+        StartCoroutine(SpawnWaveOfEnemies());
+    }
 
     private void OnEnable()
     {
@@ -77,19 +97,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        OnGameManagerInit?.Invoke(this);
-
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-            Destroy(gameObject);
-
-        StartCoroutine(SpawnWaveOfEnemies());
-    }
+   
 
     private PickUp SpawnPickUp(Enemy enemyToBeRemoved)
     {
@@ -226,10 +234,25 @@ public class GameManager : MonoBehaviour
         Instantiate(meteorToSpawn, spawnPoint.position, Quaternion.identity);
     }
 
-
     private int GetEnemiesRequiredForLevelUp()
     {
         return Mathf.FloorToInt(baseEnemiesToLevelUp * Mathf.Pow(levelMultiplier, gameLevel - 1));
+    }
+
+    public void UnlockNewPowers()
+    {
+        List<PowerData> availableAttackPowers = powerLibrary.GetAvailablePowers(PowerCategory.Attack, gameLevel);
+        List<PowerData> availableDefensePowers = powerLibrary.GetAvailablePowers(PowerCategory.Defense, gameLevel);
+        List<PowerData> availableSpecialPowers = powerLibrary.GetAvailablePowers(PowerCategory.Special, gameLevel);
+
+        PowerData selectedAttack = availableAttackPowers[UnityEngine.Random.Range(0, availableAttackPowers.Count)];
+        PowerData selectedDefense = availableDefensePowers[UnityEngine.Random.Range(0, availableDefensePowers.Count)];
+        PowerData selectedSpecial = availableSpecialPowers[UnityEngine.Random.Range(0, availableSpecialPowers.Count)];
+
+        // Populate and show LevelUp UI
+      
+//        PowerUpUIManager.Instance.PopulatePowerUpUI(new List<PowerData> { selectedAttack, selectedDefense, selectedSpecial });
+        PowerUpUIManager.Instance.Show();
     }
 
     private void LevelUp()
@@ -255,7 +278,10 @@ public class GameManager : MonoBehaviour
             meteorSpawnChance = Mathf.Max(meteorSpawnChance, 0.1f);
             DetermineEnemyType();
 
-//            Debug.Log($"New spawn delay: {minSpawnDelay} to {maxSpawnDelay}: METEORS: {meteorSpawnChance}: killsForUltimate: {killsForUltimate}");
+            //            Debug.Log($"New spawn delay: {minSpawnDelay} to {maxSpawnDelay}: METEORS: {meteorSpawnChance}: killsForUltimate: {killsForUltimate}");
+
+
+            UnlockNewPowers();
         }
     }
 

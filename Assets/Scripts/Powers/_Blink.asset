@@ -13,10 +13,15 @@ MonoBehaviour:
   m_Name: _Blink
   m_EditorClassIdentifier: 
   powerName: Blink
-  description: 'Teleport to cursor: 10s CD'
+  description: Spacebar moves ship to cursor after .5s
+  powerValue: 0
+  additionalInfo: New Ability!
+  unlockLevel: 1
   icon: {fileID: 21300000, guid: 86de2ebaf8e7543438b1cbc301a90db3, type: 3}
   category: 2
-  unlockLevel: 1
+  powerType: 1
+  abilityToModify: 7
+  secondaryAbilityToModify: 2
   active: 0
   hasCoolDown: 1
   coolDown: 10

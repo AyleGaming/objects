@@ -19,7 +19,7 @@ public class EnemyExploder : Enemy
     }
 
 
-    public override void Move(Vector2 direction)
+    protected override void MoveEnemy(Vector2 direction)
     {
         // Increase the speed multiplier over time
         speedMultiplier += accelerationRate * Time.deltaTime;

@@ -7,9 +7,14 @@ public class PowerData : ScriptableObject
 {
     public string powerName;
     public string description;
+    public float powerValue;
+    public string additionalInfo;
+    public int unlockLevel;
     public Sprite icon;
     public PowerCategory category;
-    public int unlockLevel;
+    public PowerType powerType;
+    public AbilitiesModifiable abilityToModify;
+    public AbilitiesModifiableSecondary secondaryAbilityToModify;
     public bool active = false;
     public bool hasCoolDown = false;
     public float coolDown;
@@ -31,4 +36,11 @@ public enum PowerCategory
     Attack,
     Defense,
     Special
+}
+
+public enum PowerType
+{
+    other,
+    ability,
+    buff
 }

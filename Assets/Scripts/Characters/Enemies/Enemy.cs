@@ -37,6 +37,11 @@ public class Enemy : Character
         }
     }
 
+    protected virtual void MoveEnemy(Vector2 direction)
+    {
+        myRigidBody.AddForce(movementSpeed * Time.deltaTime * direction, ForceMode2D.Impulse);
+    }
+
     public void SetupEnemy(EnemyType enemyType, int variant)
     {
         if (enemyVariantScript == null)
@@ -59,7 +64,7 @@ public class Enemy : Character
 
         if(Vector2.Distance(destination, currentPosition) > distanceToStop)
         {
-            Move(direction.normalized);
+            MoveEnemy(direction.normalized);
         } else
         {
             Attack();

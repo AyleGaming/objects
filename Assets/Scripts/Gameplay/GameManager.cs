@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
     private float meteorSpawnChance = 0.8f;
 
     [SerializeField] private PowerLibrary powerLibrary;
+    [SerializeField] private PowerUpUIManager PowerUpUIManager;
     public EnemyManager enemyManager;
 
     private void Awake()
@@ -251,8 +252,8 @@ public class GameManager : MonoBehaviour
 
         // Populate and show LevelUp UI
       
-//        PowerUpUIManager.Instance.PopulatePowerUpUI(new List<PowerData> { selectedAttack, selectedDefense, selectedSpecial });
-        PowerUpUIManager.Instance.Show();
+        PowerUpUIManager.PopulatePowerUpUI(new List<PowerData> { selectedAttack, selectedDefense, selectedSpecial });
+        PowerUpUIManager.Show();
     }
 
     private void LevelUp()

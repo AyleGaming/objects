@@ -524,7 +524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &149167303
 Transform:
   m_ObjectHideFlags: 0
@@ -538,8 +538,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1192974667}
-  m_Father: {fileID: 167889294}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &149167304
 MonoBehaviour:
@@ -590,10 +590,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1112728713}
-  - {fileID: 149167303}
   - {fileID: 357128521}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &231696339 stripped
 MonoBehaviour:
@@ -774,7 +773,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 167889294}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &483560481
 PrefabInstance:
@@ -1008,6 +1007,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6c1a3c16d2c60b548bf3469104ba01f6, type: 2}
   - {fileID: 11400000, guid: 60cc43552e64601489d7820033bf4370, type: 2}
   - {fileID: 11400000, guid: 729feded764f7924ea679412e2b75468, type: 2}
+  - {fileID: 11400000, guid: ab238c249709da54081ecbbdf2e00dca, type: 2}
+  - {fileID: 11400000, guid: 97895d92991f4844ca62d076b603537e, type: 2}
 --- !u!1 &672477198
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,7 +1041,7 @@ Transform:
   - {fileID: 1830085278}
   - {fileID: 840205448}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &679740563
 PrefabInstance:
@@ -1952,7 +1953,7 @@ PrefabInstance:
       objectReference: {fileID: 7532319926767282671, guid: 5f33d31487fd7724d9f230634117c5c7, type: 3}
     - target: {fileID: 3391740537194194348, guid: ce7b6abdf394c514ea8c1b8c35c38f80, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3391740537194194348, guid: ce7b6abdf394c514ea8c1b8c35c38f80, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2621,6 +2622,7 @@ MonoBehaviour:
   selectedEnemySuperType: 0
   killsForUltimate: 10
   powerLibrary: {fileID: 672032281}
+  PowerUpUIManager: {fileID: 1519029049}
   enemyManager: {fileID: 525458421}
 --- !u!4 &1597722990
 Transform:

@@ -10,12 +10,24 @@ public class Player : Character
     [SerializeField] private Transform playerWeaponTip;
     [SerializeField] private Transform[] playerWeaponTipsArray;
     [SerializeField] private GameObject ShieldVisual;
-    [SerializeField] private int gunsActive = 1;
-    [SerializeField] private GameObject wingGuns;
 
-    [SerializeField] protected AudioClip ultimateAudio;
+    [SerializeField] private int gunsActive = 1;
+
+    protected int blinkDistance = 1;
+    protected float blinkCooldown = 5f;
+    protected float nextBlinkTime = 0f;
+    protected bool isBlinking = false;
+    public bool blinkAvailable = true;
+    [SerializeField] protected AudioClip blinkSound;
+    [SerializeField] private GameObject blinkPrefab; // Assign your portal prefab in the Inspector
+    [SerializeField] private float blinkDelay = 0.5f; // Time before the player blinks to the position
+    protected bool checkForCollisions = false;
 
     protected float attackTimer;
+
+    [SerializeField] private GameObject wingGuns;
+    [SerializeField] protected AudioClip ultimateAudio;
+    [SerializeField] public bool ultimateAvailable = false;
     [SerializeField] private GameObject ultimateEffectPrefab;
     [SerializeField] private Material lineMaterial;
 
@@ -45,7 +57,6 @@ public class Player : Character
 
       
     }
-
     public PlayerStats Stats => playerStats;
 
     protected override void Start()
@@ -71,12 +82,13 @@ public class Player : Character
         GameObject wingGuns = GameObject.FindWithTag("WingGuns");
     }
 
+
     public override void Attack()
     {
         base.Attack();
         if (attackTimer >= currentWeapon.fireRate)
         {
-            int activeGuns = Mathf.Min(gunsActive, playerWeaponTipsArray.Length);
+            int activeGuns = Mathf.Min(playerStats.gunsActive, playerWeaponTipsArray.Length);
             for (int i = 0; i < activeGuns; i++)
             {
                 currentWeapon.Shoot(playerWeaponTipsArray[i]);
@@ -109,38 +121,14 @@ public class Player : Character
         }
     }
 
-
-    public override void UltimateAttack()
+    public virtual void Move(Vector2 direction)
     {
-        Debug.Log("Ultimate Attack Activated!");
+        if (isBlinking) return;
+        float moveSpeed = playerStats.GetStat("movementSpeed");
 
-        // Find all enemies in the scene
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); // Assuming enemies have the "Enemy" tag
+        Debug.Log($"moveSpeed: {moveSpeed}");
 
-        foreach (GameObject enemyGameObject in enemies)
-        {
-            // Try to get the Enemy script attached to the GameObject
-            Enemy enemy = enemyGameObject.GetComponent<Enemy>();
-
-            if (enemy != null)
-            {
-                // Draw a line to the enemy
-                StartCoroutine(DrawLineToEnemy(enemyGameObject.transform));
-
-                // Wait for a short duration before destroying the enemy
-                StartCoroutine(DestroyEnemyWithDelay(enemy, 0.5f)); // Adjust delay as needed
-            }
-        }
-
-        // Play ultimate attack effect
-        if (ultimateEffectPrefab != null)
-        {
-            Instantiate(ultimateEffectPrefab, transform.position, Quaternion.identity);
-            AudioSource.PlayClipAtPoint(ultimateAudio, transform.position, 1.0f);
-        }
-
-        // Set Ultimate status to not be available
-        OnUltimateStatusAvailable.Invoke(false);
+        myRigidBody.AddForce(moveSpeed * Time.deltaTime * direction, ForceMode2D.Impulse);
     }
 
     // Coroutine to draw a line to an enemy
@@ -193,19 +181,7 @@ public class Player : Character
             ShieldVisual.SetActive(shieldValue > 0);
         }
     }
-
-    public void SetWingGunsActive(int gunsActiveCount)
-    {
-        gunsActive = gunsActiveCount;
-        wingGuns.SetActive(gunsActiveCount > 1);
-
-        if (gunsActiveCount > 1)
-        {
-            CancelInvoke("ResetWingGuns");
-            Invoke(nameof(ResetWingGuns), 10f);
-        }
-        
-    }
+    
 
     private void KeepPlayerOnScreen()
     {
@@ -216,18 +192,161 @@ public class Player : Character
         transform.position = new Vector3(clampedX, clampedY, transform.position.z);
     }
 
-    private void ResetWingGuns()
+
+ 
+    /**********************************
+     * 
+     * 
+     * ABILITIES 
+     * 
+     * 
+     *********************************/
+
+
+    /**********************************
+    * 
+    * BLINK
+    * 
+    *********************************/
+    
+    public virtual void Blink(Vector3 lookDirection)
     {
-        SetWingGunsActive(1);
+        if (blinkAvailable)
+        {
+            isBlinking = true; // Disable movement during blink
+
+            // Calculate the target position
+            Vector2 blinkDirection = lookDirection;
+            Vector3 targetPosition = (Vector2)transform.position + blinkDirection * blinkDistance;
+
+            // Optional: Check for collisions (e.g., walls, obstacles)
+            if (checkForCollisions)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, blinkDirection, blinkDistance, obstacleMask);
+                if (hit.collider != null)
+                {
+                    // Stop at the obstacle
+                    targetPosition = hit.point;
+                }
+            }
+
+            // Teleport the player
+            StartCoroutine(BlinkWithDelay(targetPosition));
+            PlaySoundAtPosition(blinkSound, transform.position, 1f, 1f);
+        }
     }
 
-    public override void SetUltimateAvailable(bool enabled)
+    private IEnumerator BlinkWithDelay(Vector3 targetPosition)
     {
-        base.SetUltimateAvailable(enabled);
+        // Step 1: Spawn the portal icon at the target position
+        GameObject blink = Instantiate(blinkPrefab, targetPosition, Quaternion.identity);
+
+        // Step 2: Fade in the portal (if applicable)
+        Blink portalScript = blink.GetComponent<Blink>();
+        if (portalScript != null)
+        {
+            portalScript.FadeIn();
+        }
+
+        // Step 3: Wait for the delay
+        yield return new WaitForSeconds(blinkDelay);
+
+        // Step 4: Move the player to the target position
+        myRigidBody.MovePosition(targetPosition);
+
+        // Optional: Destroy the portal icon after teleportation
+        Destroy(blink);
+
+        // Re-enable movement after blink
+        Invoke(nameof(EndBlink), 0.1f);
+    }
+
+ 
+
+    private void EndBlink()
+    {
+        isBlinking = false; // Re-enable movement
+        nextBlinkTime = Time.time + blinkCooldown;
+        BlinkCoolDownUpdate.Invoke(blinkCooldown);
+        blinkAvailable = false;
+    }
+
+    /**********************************
+    * 
+    * ULTIMATE 
+    * 
+    *********************************/
+
+    public void UltimateAttack()
+    {
+        Debug.Log("Ultimate Attack Activated!");
+
+        // Find all enemies in the scene
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy"); // Assuming enemies have the "Enemy" tag
+
+        foreach (GameObject enemyGameObject in enemies)
+        {
+            // Try to get the Enemy script attached to the GameObject
+            Enemy enemy = enemyGameObject.GetComponent<Enemy>();
+
+            if (enemy != null)
+            {
+                // Draw a line to the enemy
+                StartCoroutine(DrawLineToEnemy(enemyGameObject.transform));
+
+                // Wait for a short duration before destroying the enemy
+                StartCoroutine(DestroyEnemyWithDelay(enemy, 0.5f)); // Adjust delay as needed
+            }
+        }
+
+        // Play ultimate attack effect
+        if (ultimateEffectPrefab != null)
+        {
+            Instantiate(ultimateEffectPrefab, transform.position, Quaternion.identity);
+            AudioSource.PlayClipAtPoint(ultimateAudio, transform.position, 1.0f);
+        }
+
+        // Set Ultimate status to not be available
+        OnUltimateStatusAvailable.Invoke(false);
+    }
+
+    public virtual void SetUltimateAvailable(bool enabled)
+    {
+        ultimateAvailable = enabled;
         if (enabled)
         {
             cooldownUI.UpdateUltStatus();
         }
+    }
+
+
+    public bool IsUltimateAvailable()
+    {
+        return ultimateAvailable;
+    }
+
+    /**********************************
+    * 
+    * ADDITIONAL GUNS 
+    * 
+    *********************************/
+
+
+    public void SetWingGunsActive(int gunsActiveCount)
+    {
+        gunsActive = playerStats.gunsActive;
+        wingGuns.SetActive(gunsActiveCount > 1);
+
+        if (gunsActiveCount > 1)
+        {
+            CancelInvoke("ResetWingGuns");
+            Invoke(nameof(ResetWingGuns), playerStats.additionalGunsTime);
+        }
+    }
+
+    private void ResetWingGuns()
+    {
+        SetWingGunsActive(playerStats.gunsBase);
     }
 
 }

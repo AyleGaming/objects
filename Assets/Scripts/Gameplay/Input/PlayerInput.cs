@@ -2,13 +2,12 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-	[SerializeField] private Character player;
+	[SerializeField] private Player player;
 
 	// DEBUG ONLY
 	public Vector2 direction;
 	public Vector3 mousePosition;
 	public Vector3 lookDirection;
-
 
 	// Update is called once per frame
 	void Update()

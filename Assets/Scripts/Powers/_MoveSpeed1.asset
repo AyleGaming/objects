@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15256b62cb32df94da860e58bf5636f2, type: 3}
-  m_Name: _ElectroPulse
+  m_Name: _MoveSpeed1
   m_EditorClassIdentifier: 
-  powerName: 'Ultimate: EMP'
-  description: Delete 5 nearest enemies
-  powerValue: 0
+  powerName: Upgrade Ship Fuel
+  description: 50% increased movement speed
+  powerValue: -1.5
   additionalInfo: 
-  unlockLevel: 1
-  icon: {fileID: 21300000, guid: ee311648005b51a428ff3f04b28b57f6, type: 3}
-  category: 0
-  powerType: 1
-  abilityToModify: 7
-  secondaryAbilityToModify: 1
+  unlockLevel: 4
+  icon: {fileID: 0}
+  category: 1
+  powerType: 2
+  abilityToModify: 2
+  secondaryAbilityToModify: 0
   active: 0
-  hasCoolDown: 1
-  coolDown: 30
-  sound: {fileID: 8300000, guid: 92089ce89a2920c45aa2975c4940f8fd, type: 3}
+  hasCoolDown: 0
+  coolDown: 0
+  sound: {fileID: 0}
   useEffect: {fileID: 0}

@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
 
         EnemyKilled(ScoreType.EnemyKilled);
 
-        if (totalEnemiesKilled % 6 == 0)
+        if (totalEnemiesKilled % 2 == 0)
         {
             SpawnPickUp(enemyToBeRemoved);
         }
@@ -242,18 +242,35 @@ public class GameManager : MonoBehaviour
 
     public void UnlockNewPowers()
     {
-        List<PowerData> availableAttackPowers = powerLibrary.GetAvailablePowers(PowerCategory.Attack, gameLevel);
-        List<PowerData> availableDefensePowers = powerLibrary.GetAvailablePowers(PowerCategory.Defense, gameLevel);
-        List<PowerData> availableSpecialPowers = powerLibrary.GetAvailablePowers(PowerCategory.Special, gameLevel);
+        PowerData selectedAttack = powerLibrary.GetRandomPower(PowerCategory.Attack, gameLevel, RollPowerRarity());
+        PowerData selectedDefense = powerLibrary.GetRandomPower(PowerCategory.Defense, gameLevel, RollPowerRarity());
+        PowerData selectedSpecial = powerLibrary.GetRandomPower(PowerCategory.Special, gameLevel, RollPowerRarity());
 
-        PowerData selectedAttack = availableAttackPowers[UnityEngine.Random.Range(0, availableAttackPowers.Count)];
-        PowerData selectedDefense = availableDefensePowers[UnityEngine.Random.Range(0, availableDefensePowers.Count)];
-        PowerData selectedSpecial = availableSpecialPowers[UnityEngine.Random.Range(0, availableSpecialPowers.Count)];
+        Debug.Log($"selectedAttack: {selectedAttack}, selectedDefense: {selectedDefense}, selectedSpecial:{selectedSpecial}");
 
         // Populate and show LevelUp UI
-      
         PowerUpUIManager.PopulatePowerUpUI(new List<PowerData> { selectedAttack, selectedDefense, selectedSpecial });
         PowerUpUIManager.Show();
+    }
+
+    // Determine what powers to level
+    private PowerRarity RollPowerRarity()
+    {
+        int randomRoll = UnityEngine.Random.Range(1, 100);
+        PowerRarity powerRarity = PowerRarity.common;
+
+        Debug.Log($"randomRoll: {randomRoll}");
+
+        if (randomRoll > 80 && randomRoll < 95)
+        {
+            powerRarity = PowerRarity.rare;
+        }
+        else if (randomRoll >= 95)
+        {
+            powerRarity = PowerRarity.legendary;
+        }
+
+        return powerRarity;
     }
 
     private void LevelUp()

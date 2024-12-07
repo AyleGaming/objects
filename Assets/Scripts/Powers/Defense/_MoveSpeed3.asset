@@ -10,20 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15256b62cb32df94da860e58bf5636f2, type: 3}
-  m_Name: _Blink
+  m_Name: _MoveSpeed3
   m_EditorClassIdentifier: 
-  powerName: Blink
-  description: Spacebar moves ship to cursor after .5s
-  powerValue: 0
-  additionalInfo: New Ability!
+  powerName: Rocket Fuel 3
+  description: 50% increased movement speed
+  powerValue: 1.5
+  additionalInfo: 
   unlockLevel: 1
-  icon: {fileID: 21300000, guid: 86de2ebaf8e7543438b1cbc301a90db3, type: 3}
-  category: 2
-  powerType: 1
-  abilityToModify: 7
-  secondaryAbilityToModify: 2
+  icon: {fileID: 0}
+  category: 1
+  powerType: 2
+  powerBonusType: 1
+  abilityToModify: 3
+  secondaryAbilityToModify: 0
+  powerRarity: 2
+  powerReusable: 1
   active: 0
-  hasCoolDown: 1
-  coolDown: 10
-  sound: {fileID: 8300000, guid: 78fa16430317c0a4e9f6b68e31e79b53, type: 3}
+  hasCoolDown: 0
+  coolDown: 0
+  sound: {fileID: 0}
   useEffect: {fileID: 0}

@@ -6,7 +6,8 @@ using UnityEngine;
 public enum AbilitiesModifiable
 {
     health,
-    damage,
+    attackDamage,
+    damageReduction,
     movementSpeed,
     gunsBase,
     additionalGuns,
@@ -14,6 +15,7 @@ public enum AbilitiesModifiable
     hasUltimateAbility,
     hasBlinkAbility,
     hasShieldAbility,
+    additiveWeaponDamage
 }
 
 public enum AbilitiesModifiableSecondary
@@ -25,44 +27,42 @@ public enum AbilitiesModifiableSecondary
     additionalGunsTime,
 }
 
+public enum AbilityDataType
+{
+   stats,
+   stats_int,
+   stats_bool
+}
+
 
 public class PlayerStats : MonoBehaviour
 {
-    [Header("Core Stats")]
-    public int health = 75;
-    public int damage = 25;
-    public float movementSpeed = 15f;
-   
-    [Header("Weapons")]
-    public int gunsBase = 1;
-    public int gunsActive = 1;
-    public int additionalGuns = 1;
-    public float additionalGunsTime = 10f;
-    public float attackSpeed = 1.8f;
-
-    [Header("Abilities")]
-    public bool hasUltimateAbility = false;
-    public float ultimateCooldown = 30f;
-    
-    public bool hasBlinkAbility = false;
-    public float blinkCooldown = 5f;
-    
-    public bool hasShieldAbility = false;
-    public int shield = 25;
-
-
     private Dictionary<string, float> stats = new Dictionary<string, float>()
     {
-        { "health", 75f },
-        { "shield", 25f },
-        { "damage", 25f },
+        { "damageReduction", 0f },
         { "movementSpeed", 15f },
-        { "gunsBase", 1f },
-        { "gunsActive", 1f },
         { "ultimateCooldown", 30f },
         { "blinkCooldown", 10f },
-        { "attackSpeed", .18f },
-        { "damageMultiplier", 1f }
+        { "attackSpeed", .4f },
+        { "damageMultiplier", 1f },
+        { "additionalGunsTime", 10f },
+        { "additiveWeaponDamage", 0f }
+    };
+
+    private Dictionary<string, int> statsInt = new Dictionary<string, int>()
+    {
+        { "health", 75 },
+        { "shield", 25 },
+        { "attackDamage", 25 },
+        { "gunsBase", 1 },
+        { "gunsActive", 1 },
+    };
+
+    private Dictionary<string, bool> statsBool = new Dictionary<string, bool>()
+    {
+        { "hasUltimateAbility", false },
+        { "hasBlinkAbility", false },
+        { "hasShieldAbility", false }
     };
 
     public void SetStat(string statName, float newValue)
@@ -70,9 +70,33 @@ public class PlayerStats : MonoBehaviour
         if (stats.ContainsKey(statName))
         {
             stats[statName] = newValue;
-            Debug.Log($"{statName}: {newValue}");
-            // Call a method on the Player to apply the updated stat
-            //            ApplyStatToPlayer(statName);
+            Debug.Log($"FLOAT: {statName}: {newValue}");
+        }
+        else
+        {
+            Debug.LogError($"Stat {statName} not found in stats dictionary.");
+        }
+    }
+
+    public void SetStatInt(string statName, int newValue)
+    {
+        if (statsInt.ContainsKey(statName))
+        {
+            statsInt[statName] = newValue;
+            Debug.Log($"INT: {statName}: {newValue}");
+        }
+        else
+        {
+            Debug.LogError($"Stat {statName} not found in stats dictionary.");
+        }
+    }
+
+    public void SetStatBool(string statName, bool newValue)
+    {
+        if (statsBool.ContainsKey(statName))
+        {
+            statsBool[statName] = newValue;
+            Debug.Log($"BOOL: {statName}: {newValue}");
         }
         else
         {
@@ -84,6 +108,17 @@ public class PlayerStats : MonoBehaviour
     {
         return stats[statName];
     }
+
+    public int GetStatInt(string statName)
+    {
+        return statsInt[statName];
+    }
+
+    public bool GetStatBool(string statName)
+    {
+        return statsBool[statName];
+    }
+
 
 }
 

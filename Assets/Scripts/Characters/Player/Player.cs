@@ -86,12 +86,17 @@ public class Player : Character
     public override void Attack()
     {
         base.Attack();
-        if (attackTimer >= currentWeapon.fireRate)
+        float newAttackSpeed = playerStats.GetStat("attackSpeed");
+
+        if (attackTimer >= newAttackSpeed)
         {
-            int activeGuns = Mathf.Min(playerStats.gunsActive, playerWeaponTipsArray.Length);
+            int gunsActive = playerStats.GetStatInt("gunsActive");
+            float additiveWeaponDamage = playerStats.GetStat("additiveWeaponDamage");
+
+            int activeGuns = Mathf.Min(gunsActive, playerWeaponTipsArray.Length);
             for (int i = 0; i < activeGuns; i++)
             {
-                currentWeapon.Shoot(playerWeaponTipsArray[i]);
+                currentWeapon.Shoot(playerWeaponTipsArray[i], additiveWeaponDamage);
             }
             attackTimer = 0;
         }
@@ -125,54 +130,9 @@ public class Player : Character
     {
         if (isBlinking) return;
         float moveSpeed = playerStats.GetStat("movementSpeed");
-
-        Debug.Log($"moveSpeed: {moveSpeed}");
-
         myRigidBody.AddForce(moveSpeed * Time.deltaTime * direction, ForceMode2D.Impulse);
     }
 
-    // Coroutine to draw a line to an enemy
-    private IEnumerator DrawLineToEnemy(Transform enemyTransform)
-    {
-        // Create a new GameObject for the line
-        GameObject lineObject = new ("UltimateLine");
-        LineRenderer lineRenderer = lineObject.AddComponent<LineRenderer>();
-
-        // Configure the LineRenderer
-        lineRenderer.startWidth = 0.1f;
-        lineRenderer.endWidth = 0.1f;
-        // Assign the custom material
-        if (lineMaterial != null)
-        {
-            lineRenderer.material = lineMaterial;
-        }
-        else
-        {
-            // Fallback material if no custom material is assigned
-            lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-        }
-
-        // Set positions for the line
-        lineRenderer.SetPosition(0, transform.position); // Start from the player's position
-        lineRenderer.SetPosition(1, enemyTransform.position); // End at the enemy's position
-
-        yield return new WaitForSeconds(0.5f); // Display the line for a short duration
-
-        // Destroy the line object
-        Destroy(lineObject);
-    }
-
-    // Coroutine to destroy an enemy with a delay
-    private IEnumerator DestroyEnemyWithDelay(Enemy enemy, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        // Call the PlayDeathEffect method on the Enemy
-        if (enemy)
-        {
-            enemy.PlayDeathEffect();
-        }
-    }
 
     private void UpdateShieldVisual(float shieldValue)
     {
@@ -310,6 +270,50 @@ public class Player : Character
         OnUltimateStatusAvailable.Invoke(false);
     }
 
+
+    // Coroutine to draw a line to an enemy
+    private IEnumerator DrawLineToEnemy(Transform enemyTransform)
+    {
+        // Create a new GameObject for the line
+        GameObject lineObject = new("UltimateLine");
+        LineRenderer lineRenderer = lineObject.AddComponent<LineRenderer>();
+
+        // Configure the LineRenderer
+        lineRenderer.startWidth = 0.1f;
+        lineRenderer.endWidth = 0.1f;
+        // Assign the custom material
+        if (lineMaterial != null)
+        {
+            lineRenderer.material = lineMaterial;
+        }
+        else
+        {
+            // Fallback material if no custom material is assigned
+            lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+        }
+
+        // Set positions for the line
+        lineRenderer.SetPosition(0, transform.position); // Start from the player's position
+        lineRenderer.SetPosition(1, enemyTransform.position); // End at the enemy's position
+
+        yield return new WaitForSeconds(0.5f); // Display the line for a short duration
+
+        // Destroy the line object
+        Destroy(lineObject);
+    }
+
+    // Coroutine to destroy an enemy with a delay
+    private IEnumerator DestroyEnemyWithDelay(Enemy enemy, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // Call the PlayDeathEffect method on the Enemy
+        if (enemy)
+        {
+            enemy.PlayDeathEffect();
+        }
+    }
+
     public virtual void SetUltimateAvailable(bool enabled)
     {
         ultimateAvailable = enabled;
@@ -334,19 +338,27 @@ public class Player : Character
 
     public void SetWingGunsActive(int gunsActiveCount)
     {
-        gunsActive = playerStats.gunsActive;
+        gunsActive = gunsActiveCount;
+        // set guns active to number of guns
+
+        Debug.Log($"YEETUS: {playerStats.GetStatInt("gunsActive")}");
+        playerStats.SetStatInt("gunsActive", gunsActive);
+        
+        // Show UI
         wingGuns.SetActive(gunsActiveCount > 1);
+
+        Debug.Log(gunsActive);
 
         if (gunsActiveCount > 1)
         {
             CancelInvoke("ResetWingGuns");
-            Invoke(nameof(ResetWingGuns), playerStats.additionalGunsTime);
+            Invoke(nameof(ResetWingGuns), playerStats.GetStat("additionalGunsTime"));
         }
     }
 
     private void ResetWingGuns()
     {
-        SetWingGunsActive(playerStats.gunsBase);
+        SetWingGunsActive(playerStats.GetStatInt("gunsBase"));
     }
 
 }

@@ -13,8 +13,11 @@ public class PowerData : ScriptableObject
     public Sprite icon;
     public PowerCategory category;
     public PowerType powerType;
+    public PowerBonusType powerBonusType;
     public AbilitiesModifiable abilityToModify;
     public AbilitiesModifiableSecondary secondaryAbilityToModify;
+    public PowerRarity powerRarity;
+    public bool powerReusable = true;
     public bool active = false;
     public bool hasCoolDown = false;
     public float coolDown;
@@ -43,4 +46,17 @@ public enum PowerType
     other,
     ability,
     buff
+}
+public enum PowerRarity
+{
+    common,
+    rare,
+    legendary
+}
+
+public enum PowerBonusType
+{
+    additive,
+    multiplicative,
+    subtractive
 }

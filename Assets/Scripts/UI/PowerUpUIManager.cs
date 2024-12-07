@@ -1,9 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Reflection;
-using UnityEngine.UI;
-using TMPro;
 
 public class PowerUpUIManager : MonoBehaviour
 {
@@ -16,6 +12,7 @@ public class PowerUpUIManager : MonoBehaviour
     public Transform specialCategoryUI;
 
     [SerializeField] private GameObject levelUpPanel; // The UI panel or elements
+    [SerializeField] private PowerLibrary powerLibrary;
 
 
     void OnDestroy()
@@ -78,6 +75,9 @@ public class PowerUpUIManager : MonoBehaviour
     {
         Debug.Log($"Selected Power: {selectedPower.powerName}");
         ApplyPower(selectedPower);
+        if (selectedPower.powerReusable == false) {
+            powerLibrary.RemovePower(selectedPower);
+        }
         CloseLevelUpUI();
     }
  
@@ -90,38 +90,51 @@ public class PowerUpUIManager : MonoBehaviour
     private void ApplyPower(PowerData power)
     {
 
-        Debug.Log($"APPLY POW: {power.powerType}");
+        Debug.Log($"APPLY POWER: {power.abilityToModify}");
 
-
-        switch (power.powerType)
+        switch (power.abilityToModify)  
         {
-            case PowerType.ability:
-                // Set ability to active
-                //Player.Instance.Stats.SetStat(power.abilityToModify.ToString(), true);
-
-                // Check of secondary ability to update
-                //if (power.secondaryAbilityToModify != AbilitiesModifiableSecondary.none)
-                // {
-                // Set secondary update
-                //    ApplySecondaryPower(power);
-                //}
-                //break;
+            case AbilitiesModifiable.health:
                 break;
-            case PowerType.buff:
-
-                float baseAbilityValue = Player.Instance.Stats.GetStat(power.abilityToModify.ToString());
-
-                Debug.Log($"BASE ABILITY: {power.abilityToModify}, VALUE: {baseAbilityValue}");
-
-                float newAbilityValue = baseAbilityValue * power.powerValue;
-
-                Player.Instance.Stats.SetStat(power.abilityToModify.ToString(), newAbilityValue);
-
-                Debug.Log($"NEW VALUE: {Player.Instance.Stats.GetStat(power.abilityToModify.ToString())}");
-
+            /*** 
+            * Additive Abilities
+            */
+            case AbilitiesModifiable.additiveWeaponDamage:
+                float baseValueAdditiveWeaponDamage = Player.Instance.Stats.GetStat(power.abilityToModify.ToString());
+                float newValueAdditiveWeaponDamage = baseValueAdditiveWeaponDamage + power.powerValue;
+                Player.Instance.Stats.SetStat(power.abilityToModify.ToString(), newValueAdditiveWeaponDamage);
                 break;
-
+            case AbilitiesModifiable.gunsBase:
+                int baseValueInt = Player.Instance.Stats.GetStatInt(power.abilityToModify.ToString());
+                int newValueInt = baseValueInt + (int)power.powerValue;
+                Player.Instance.Stats.SetStat(power.abilityToModify.ToString(), newValueInt);
+                break;
+            case AbilitiesModifiable.additionalGuns:
+                break;
+            /*** 
+             * Multiplicative Abilities
+             */
+            case AbilitiesModifiable.damageReduction:
+            case AbilitiesModifiable.movementSpeed:
+            case AbilitiesModifiable.attackSpeed:
+                float baseValue = Player.Instance.Stats.GetStat(power.abilityToModify.ToString());
+                float newValue = baseValue * power.powerValue;
+                Player.Instance.Stats.SetStat(power.abilityToModify.ToString(), newValue);
+                break;
+            /*** 
+             * Boolean Abilities
+             */
+            case AbilitiesModifiable.hasUltimateAbility:
+            case AbilitiesModifiable.hasBlinkAbility:
+            case AbilitiesModifiable.hasShieldAbility:
+                bool baseBoolValue = Player.Instance.Stats.GetStatBool(power.abilityToModify.ToString());
+                bool newBoolValue = !baseBoolValue;
+                Player.Instance.Stats.SetStatBool(power.abilityToModify.ToString(), newBoolValue);
+                break;
+            default:
+                break;
         }
+        
     }
 
     private void ApplySecondaryPower(PowerData power)

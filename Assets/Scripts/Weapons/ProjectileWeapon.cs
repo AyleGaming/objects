@@ -6,12 +6,12 @@ public class ProjectileWeapon : Weapon
 {
     [SerializeField] private Bullet projectilePrefab;
 
-    public override void Shoot(Transform weaponTip)
+    public override void Shoot(Transform weaponTip, float additiveDamage = 0f)
     {
         // spawn a projectile
         PlayRandomFireSound(weaponTip.position);
         Bullet bulletClone = Instantiate(projectilePrefab, weaponTip.position, weaponTip.rotation);
-        bulletClone.InitializeBullet(ammoFaction, damage);
+        bulletClone.InitializeBullet(ammoFaction, damage + additiveDamage);
     }
 
     private void PlayRandomFireSound(Vector3 position)

@@ -223,7 +223,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2698781011932260536}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.026176924, w: 0.99965733}
   m_LocalPosition: {x: -0.375, y: 0.16, z: 0}
   m_LocalScale: {x: 0.5625, y: 0.5625, z: 0.5625}
   m_ConstrainProportionsScale: 0
@@ -231,7 +231,7 @@ Transform:
   - {fileID: 4421184562850304050}
   m_Father: {fileID: 4924309164118763625}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -3}
 --- !u!212 &7392467873364162911
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -509,7 +509,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4941310277172442183}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.026176924, w: 0.99965733}
   m_LocalPosition: {x: 0.375, y: 0.16, z: 0}
   m_LocalScale: {x: 0.5625, y: 0.5625, z: 0.5625}
   m_ConstrainProportionsScale: 0
@@ -517,7 +517,7 @@ Transform:
   - {fileID: 8018994206566076762}
   m_Father: {fileID: 4924309164118763625}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3}
 --- !u!212 &1240896803908188413
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -989,6 +989,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-9088113455055054838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3466985253077390697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d5d4c545a6f4f4388db618527b2a35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-3290893476875344769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1039,13 +1051,8 @@ MonoBehaviour:
   myRigidBody: {fileID: 894457399}
   movementSpeed: 20
   dieEffect: {fileID: 8194992990867289339, guid: 99bc28c0d45f51c4fbac01080b73edc7, type: 3}
-  ultimateAvailable: 0
   collisionSound: {fileID: 0}
-  blinkSound: {fileID: 0}
-  blinkPrefab: {fileID: 0}
-  blinkDelay: 0.5
   currentWeapon: {fileID: 11400000, guid: f16b05492b2a87248a4e3b72df0d9644, type: 2}
-  blinkAvailable: 1
   obstacleMask:
     serializedVersion: 2
     m_Bits: 8
@@ -1059,32 +1066,17 @@ MonoBehaviour:
   - {fileID: 8018994206566076762}
   ShieldVisual: {fileID: 7789668509784259385}
   gunsActive: 1
+  blinkAvailable: 1
+  blinkSound: {fileID: 0}
+  blinkPrefab: {fileID: 0}
+  blinkDelay: 0.5
   wingGuns: {fileID: 2744238720782742912}
   ultimateAudio: {fileID: 8300000, guid: 92089ce89a2920c45aa2975c4940f8fd, type: 3}
+  ultimateAvailable: 0
   ultimateEffectPrefab: {fileID: 2708598583397607911, guid: c249fe5283232c740a3ba04a20383470, type: 3}
   lineMaterial: {fileID: 2100000, guid: 21ce22ee4a68b854f8df2b3f4de750e1, type: 2}
   cooldownUI: {fileID: 0}
   uiManager: {fileID: 0}
---- !u!114 &-9088113455055054838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3466985253077390697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57d5d4c545a6f4f4388db618527b2a35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  shield: 100
-  damage: 10
-  speed: 5
-  attackSpeed: 1.8
-  blinkCooldown: 5
-  hasUltimateAbility: 0
-  hasBlinkAbility: 0
 --- !u!4 &6364966449743258037 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8508511202554977809, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}

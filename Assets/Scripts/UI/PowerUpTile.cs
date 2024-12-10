@@ -5,6 +5,7 @@ using TMPro;
 public class PowerUpTile : MonoBehaviour
 {
     [SerializeField] private TMP_Text titleText;
+    [SerializeField] private TMP_Text additionalInfo;
     [SerializeField] private TMP_Text descriptionText;
     [SerializeField] private TMP_Text coolDownText;
     [SerializeField] private Image  iconValue;
@@ -17,6 +18,12 @@ public class PowerUpTile : MonoBehaviour
     {
         if (titleText != null)
             titleText.text = title;
+    }
+
+    public void SetAdditionalInfo(string title)
+    {
+        if (additionalInfo != null)
+            additionalInfo.text = title;
     }
 
     public void SetDescription(string description)

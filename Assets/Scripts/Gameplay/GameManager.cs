@@ -39,15 +39,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EnemySuperType selectedEnemySuperType = EnemySuperType.Base;
 
     private int maxEnemies = 10;
-    private float minSpawnDelay = 1f; // Minimum delay for spawning
-    private float maxSpawnDelay = 3f; // Maximum delay for spawning
-    private float spawnDelayMultiplier = 0.9f; // Multiplier to reduce delay every 10 levels
+    private float minSpawnDelay = 2f; // Minimum delay for spawning
+    private float maxSpawnDelay = 4f; // Maximum delay for spawning
+    private float spawnDelayMultiplier = 0.95f; // Multiplier to reduce delay every 10 levels
 
     private float levelMultiplier = 1.1f; // increase amount of enemies required per level
     private int levelKillCount = 0; // number of enemies killed per level
     [SerializeField] float killsForUltimate = 20f;
     private float killsSinceLastUltimate = 0f;
-    private float meteorSpawnChance = 0.8f;
+    private float meteorSpawnChance = 0.85f;
 
     [SerializeField] private PowerLibrary powerLibrary;
     [SerializeField] private PowerUpUIManager PowerUpUIManager;
@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
 
         EnemyKilled(ScoreType.EnemyKilled);
 
-        if (totalEnemiesKilled % 2 == 0)
+        if (totalEnemiesKilled % 6 == 0)
         {
             SpawnPickUp(enemyToBeRemoved);
         }

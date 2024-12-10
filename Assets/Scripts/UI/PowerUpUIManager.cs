@@ -13,6 +13,8 @@ public class PowerUpUIManager : MonoBehaviour
 
     [SerializeField] private GameObject levelUpPanel; // The UI panel or elements
     [SerializeField] private PowerLibrary powerLibrary;
+    [SerializeField] private GameObject BlinkUI;
+    [SerializeField] private GameObject UltUI;
 
 
     void OnDestroy()
@@ -38,6 +40,7 @@ public class PowerUpUIManager : MonoBehaviour
             if (tile != null)
             {
                 tile.SetTitle(power.powerName);
+                tile.SetAdditionalInfo($"{power.powerType} ({power.powerRarity})");
                 tile.SetDescription(power.description);
                 if (power.hasCoolDown)
                 {
@@ -124,8 +127,19 @@ public class PowerUpUIManager : MonoBehaviour
             /*** 
              * Boolean Abilities
              */
-            case AbilitiesModifiable.hasUltimateAbility:
+           
             case AbilitiesModifiable.hasBlinkAbility:
+                BlinkUI.SetActive(true);
+                bool baseBlinkValue = Player.Instance.Stats.GetStatBool(power.abilityToModify.ToString());
+                bool newBlinkValue = !baseBlinkValue;
+                Player.Instance.Stats.SetStatBool(power.abilityToModify.ToString(), newBlinkValue);
+                break;
+            case AbilitiesModifiable.hasUltimateAbility:
+                UltUI.SetActive(true);
+                bool baseUltValue = Player.Instance.Stats.GetStatBool(power.abilityToModify.ToString());
+                bool newUltValue = !baseUltValue;
+                Player.Instance.Stats.SetStatBool(power.abilityToModify.ToString(), newUltValue);
+                break;
             case AbilitiesModifiable.hasShieldAbility:
                 bool baseBoolValue = Player.Instance.Stats.GetStatBool(power.abilityToModify.ToString());
                 bool newBoolValue = !baseBoolValue;

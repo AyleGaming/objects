@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Hide from enemies for duration
   powerValue: 10
   additionalInfo: 
-  unlockLevel: 2
+  unlockLevel: 3
   icon: {fileID: 0}
   category: 2
   powerType: 1

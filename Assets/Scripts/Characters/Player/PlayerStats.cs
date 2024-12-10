@@ -40,10 +40,10 @@ public class PlayerStats : MonoBehaviour
     private Dictionary<string, float> stats = new Dictionary<string, float>()
     {
         { "damageReduction", 0f },
-        { "movementSpeed", 15f },
+        { "movementSpeed", 18f },
         { "ultimateCooldown", 30f },
         { "blinkCooldown", 10f },
-        { "attackSpeed", .4f },
+        { "attackSpeed", .35f },
         { "damageMultiplier", 1f },
         { "additionalGunsTime", 10f },
         { "additiveWeaponDamage", 0f }

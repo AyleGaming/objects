@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15256b62cb32df94da860e58bf5636f2, type: 3}
   m_Name: _AttackDamage3
   m_EditorClassIdentifier: 
-  powerName: Attack Damage 3
-  description: Each attack deals 50 additional damage
+  powerName: 50mm Cannons
+  description: +50 damage per attack
   powerValue: 50
-  additionalInfo: 50(+) attack damage
+  additionalInfo: 
   unlockLevel: 1
   icon: {fileID: 0}
   category: 0

@@ -122,6 +122,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &2316071 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7607827656127565430, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
+  m_PrefabInstance: {fileID: 1339228756}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6758502
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2130,6 +2135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ult Progress
       objectReference: {fileID: 0}
+    - target: {fileID: 34542313514740824, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 491017740932602922, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2152,39 +2161,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4233079148888324318, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4233079148888324318, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4233079148888324318, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 108.333336
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4233079148888324318, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4559745795616964758, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4559745795616964758, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4559745795616964758, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 762.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4559745795616964758, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4833520471982952661, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5127072401645340961, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2204,7 +2213,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5224494436091505932, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5224494436091505932, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
+      propertyPath: m_TagString
+      value: BlinkUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5654641037405807146, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7228476812717590722, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
       propertyPath: m_Pivot.x
@@ -2456,6 +2473,8 @@ MonoBehaviour:
   specialCategoryUI: {fileID: 1176323074}
   levelUpPanel: {fileID: 1904474465}
   powerLibrary: {fileID: 672032281}
+  BlinkUI: {fileID: 2316071}
+  UltUI: {fileID: 2035378931}
 --- !u!1001 &1522438259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2699,11 +2718,11 @@ MonoBehaviour:
   totalEnemiesKilled: 0
   gameLevel: 1
   enableEnemiesSpawn: 1
-  enableMeteorsSpawn: 0
-  baseEnemiesToLevelUp: 2
+  enableMeteorsSpawn: 1
+  baseEnemiesToLevelUp: 3
   selectedEnemyType: 0
   selectedEnemySuperType: 0
-  killsForUltimate: 50
+  killsForUltimate: 20
   powerLibrary: {fileID: 672032281}
   PowerUpUIManager: {fileID: 1519029049}
   enemyManager: {fileID: 525458421}
@@ -3431,6 +3450,11 @@ RectTransform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3391740537194194348, guid: ce7b6abdf394c514ea8c1b8c35c38f80, type: 3}
   m_PrefabInstance: {fileID: 1198109929}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2035378931 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3050011034293122538, guid: 6d1016a03aa43634a9cdcb1fd09fb374, type: 3}
+  m_PrefabInstance: {fileID: 1339228756}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &2056375483 stripped
 MonoBehaviour:

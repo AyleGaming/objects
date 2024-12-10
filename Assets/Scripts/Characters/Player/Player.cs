@@ -171,7 +171,7 @@ public class Player : Character
     
     public virtual void Blink(Vector3 lookDirection)
     {
-        if (blinkAvailable)
+        if (blinkAvailable && playerStats.GetStatBool("hasBlinkAbility") == true)
         {
             isBlinking = true; // Disable movement during blink
 
@@ -317,7 +317,7 @@ public class Player : Character
     public virtual void SetUltimateAvailable(bool enabled)
     {
         ultimateAvailable = enabled;
-        if (enabled)
+        if (ultimateAvailable)
         {
             cooldownUI.UpdateUltStatus();
         }
@@ -326,7 +326,7 @@ public class Player : Character
 
     public bool IsUltimateAvailable()
     {
-        return ultimateAvailable;
+        return playerStats.GetStatBool("hasUltimateAbility") && ultimateAvailable == true;
     }
 
     /**********************************

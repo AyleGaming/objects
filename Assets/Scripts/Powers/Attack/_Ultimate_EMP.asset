@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: _Ultimate_EMP
   m_EditorClassIdentifier: 
   powerName: 'Ultimate: EMP'
-  description: Deal attack damage x10 to 10 nearest enemies
+  description: RMB to do 10x Attack Damage to 10 enemies (30s CD)
   powerValue: 0
-  additionalInfo: 10(x) attack damage to 10 nearest enemies
+  additionalInfo: 
   unlockLevel: 1
   icon: {fileID: 21300000, guid: ee311648005b51a428ff3f04b28b57f6, type: 3}
   category: 0

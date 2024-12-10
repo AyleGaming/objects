@@ -21,7 +21,7 @@ MonoBehaviour:
   category: 2
   powerType: 1
   powerBonusType: 0
-  abilityToModify: 7
+  abilityToModify: 8
   secondaryAbilityToModify: 2
   powerRarity: 0
   powerReusable: 0

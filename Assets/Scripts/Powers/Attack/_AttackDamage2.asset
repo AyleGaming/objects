@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15256b62cb32df94da860e58bf5636f2, type: 3}
   m_Name: _AttackDamage2
   m_EditorClassIdentifier: 
-  powerName: 25mm Cannons
-  description: +25 damage per attack
-  powerValue: 25
+  powerName: 15mm Cannons
+  description: +15 damage per attack
+  powerValue: 15
   additionalInfo: 
   unlockLevel: 1
   icon: {fileID: 0}

@@ -43,7 +43,7 @@ public class PlayerStats : MonoBehaviour
         { "movementSpeed", 18f },
         { "ultimateCooldown", 30f },
         { "blinkCooldown", 10f },
-        { "attackSpeed", .35f },
+        { "attackSpeed", .30f },
         { "damageMultiplier", 1f },
         { "additionalGunsTime", 10f },
         { "additiveWeaponDamage", 0f }
@@ -61,7 +61,7 @@ public class PlayerStats : MonoBehaviour
     private Dictionary<string, bool> statsBool = new Dictionary<string, bool>()
     {
         { "hasUltimateAbility", false },
-        { "hasBlinkAbility", false },
+        { "hasBlinkAbility", true },
         { "hasShieldAbility", false }
     };
 
@@ -118,7 +118,6 @@ public class PlayerStats : MonoBehaviour
     {
         return statsBool[statName];
     }
-
 
 }
 

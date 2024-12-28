@@ -111,7 +111,9 @@ public class UIManager : MonoBehaviour
 	{
 		healthText.text = score.ToString();
 		healthSlider.value = score;
-		healthBarImage.color = Color.Lerp(Color.red, Color.green, healthSlider.value / healthSlider.maxValue);
+		Color green = new Color(0.44f, 0.79f, 0.22f, 0.8f);
+
+		healthBarImage.color = Color.Lerp(Color.red, green, healthSlider.value / healthSlider.maxValue);
 
 	}
 
@@ -125,7 +127,7 @@ public class UIManager : MonoBehaviour
 	{
 		if(score <= 0)
         {
-			blinkText.text = "RDY".ToString();
+			blinkText.text = "tele".ToString();
 		} else
         {
 			blinkText.text = score.ToString("F2");

@@ -31,6 +31,7 @@ public class Player : Character
     [SerializeField] private GameObject ultimateEffectPrefab;
     [SerializeField] private Material lineMaterial;
 
+    // Lock player on screen
     private Vector2 screenBounds;
     private float objectWidth;
     private float objectHeight;

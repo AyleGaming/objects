@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShieldPickUp : PickUp
+public class SpeedPickUp : PickUp
 {
-    [SerializeField] private int shieldPointsToAdd;
-
     protected override void PickMeUp(Player player)
     {
         base.PickMeUp(player);
-        player.healthValue.IncreaseShield(shieldPointsToAdd);
+        player.SetSpeedActive();
     }
 }

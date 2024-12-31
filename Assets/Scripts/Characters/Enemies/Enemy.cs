@@ -26,7 +26,7 @@ public class Enemy : Character
         base.Start();
 
         // Set Enemy Health
-        healthValue.SetHealthValue(80);
+        healthValue.SetHealthValue(20);
         healthValue.SetShieldValue(0);
         target = FindObjectOfType<Player>();
 

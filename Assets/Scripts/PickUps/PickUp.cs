@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class PickUp : MonoBehaviour
 {
-    [SerializeField] private Weapon pickUp;
+//    [SerializeField] private Weapon pickUp;
     [SerializeField] protected AudioClip pickUpAudio;
     protected float pickUpVolume = 1f;
 
@@ -67,11 +67,14 @@ public abstract class PickUp : MonoBehaviour
         if (collision.attachedRigidbody.CompareTag("Player"))
         {
             PickMeUp(collision.attachedRigidbody.GetComponent<Player>());
-
-
-            //            collision.attachedRigidbody.GetComponent<Player>().currentWeapon = pickUp;
         }
     }
 
-    protected abstract void PickMeUp(Player playerInTrigger);
+    protected virtual void PickMeUp(Player player)
+    {
+        GameManager.Instance.EnemyKilled(ScoreType.PowerUpCollected);
+        AudioSource.PlayClipAtPoint(pickUpAudio, player.transform.position, pickUpVolume);
+        Destroy(gameObject);
+    }
+
 }

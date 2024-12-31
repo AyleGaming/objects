@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d710bb4ea9c4ff40bf72339a35bc348, type: 3}
   m_Name: Laser Gun
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
   ammo: 100
   fireRate: 2
   ammoFaction: 1

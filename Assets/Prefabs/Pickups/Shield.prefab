@@ -157,11 +157,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -442705947
-  m_SortingLayer: 4
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c3ba85d0ffe4dc04ba1ba4ea5a8f01b9, type: 3}
-  m_Color: {r: 0.21176472, g: 0.73333335, b: 0.9607844, a: 0.5019608}
+  m_Color: {r: 0.21176472, g: 0.73333335, b: 0.9607844, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -209,9 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c6552281bcafef48a2e3bbc88d11085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUp: {fileID: 0}
   pickUpAudio: {fileID: 8300000, guid: 78419f98379502c4dbfb2774bc94e7c1, type: 3}
-  pickUpVolume: 10
   fadeDuration: 1
   lifetime: 10
-  shieldPointsToAdd: 15
+  shieldPointsToAdd: 5

@@ -14,7 +14,7 @@ public class Player : Character
     [SerializeField] private int gunsActive = 1;
 
     protected int blinkDistance = 1;
-    protected float blinkCooldown = 5f;
+    protected float blinkCooldown = 10f;
     protected float nextBlinkTime = 0f;
     protected bool isBlinking = false;
     public bool blinkAvailable = true;
@@ -83,30 +83,6 @@ public class Player : Character
         GameObject wingGuns = GameObject.FindWithTag("WingGuns");
     }
 
-
-    public override void Attack()
-    {
-        base.Attack();
-        float newAttackSpeed = playerStats.GetStat("attackSpeed");
-
-        if (attackTimer >= newAttackSpeed)
-        {
-            int gunsActive = playerStats.GetStatInt("gunsActive");
-            float additiveWeaponDamage = playerStats.GetStat("additiveWeaponDamage");
-
-            int activeGuns = Mathf.Min(gunsActive, playerWeaponTipsArray.Length);
-            for (int i = 0; i < activeGuns; i++)
-            {
-                currentWeapon.Shoot(playerWeaponTipsArray[i], additiveWeaponDamage);
-            }
-            attackTimer = 0;
-        }
-        else
-        {
-            attackTimer += Time.deltaTime;
-        }
-    }
-
     protected override void Update()
     {
         base.Update();
@@ -125,7 +101,28 @@ public class Player : Character
             uiManager.UpdateBlinkValue(0f);
             blinkAvailable = true;
         }
+        attackTimer += Time.deltaTime;
     }
+
+    public override void Attack()
+    {
+        base.Attack();
+        float newAttackSpeed = playerStats.GetStat("attackSpeed");
+
+        if (attackTimer >= newAttackSpeed)
+        {
+            int gunsActive = playerStats.GetStatInt("gunsActive");
+            float additiveWeaponDamage = playerStats.GetStat("additiveWeaponDamage");
+
+            int activeGuns = Mathf.Min(gunsActive, playerWeaponTipsArray.Length);
+            for (int i = 0; i < activeGuns; i++)
+            {
+                currentWeapon.Shoot(playerWeaponTipsArray[i], additiveWeaponDamage);
+            }
+            attackTimer = 0;
+        }
+    }
+
 
     public virtual void Move(Vector2 direction)
     {
@@ -330,36 +327,63 @@ public class Player : Character
         return playerStats.GetStatBool("hasUltimateAbility") && ultimateAvailable == true;
     }
 
+
     /**********************************
     * 
     * ADDITIONAL GUNS 
     * 
     *********************************/
 
-
     public void SetWingGunsActive(int gunsActiveCount)
     {
         gunsActive = gunsActiveCount;
         // set guns active to number of guns
-
-        Debug.Log($"YEETUS: {playerStats.GetStatInt("gunsActive")}");
         playerStats.SetStatInt("gunsActive", gunsActive);
         
         // Show UI
         wingGuns.SetActive(gunsActiveCount > 1);
 
-        Debug.Log(gunsActive);
-
         if (gunsActiveCount > 1)
         {
             CancelInvoke("ResetWingGuns");
-            Invoke(nameof(ResetWingGuns), playerStats.GetStat("additionalGunsTime"));
+            float additionalGunsTime = playerStats.GetStat("additionalGunsTime");
+            Invoke(nameof(ResetWingGuns), additionalGunsTime);
+            float newAdditionalGunsTime = additionalGunsTime + .5f;
+            playerStats.SetStat("additionalGunsTime", newAdditionalGunsTime);
         }
     }
 
     private void ResetWingGuns()
     {
         SetWingGunsActive(playerStats.GetStatInt("gunsBase"));
+    }
+
+
+    /**********************************
+    * 
+    * SPEED
+    * 
+    *********************************/
+
+    public void SetSpeedActive()
+    {
+        float newAttackSpeed = playerStats.GetStat("attackSpeed") * .8f;
+        float newMovementSpeed = playerStats.GetStat("movementSpeed") * 1.25f;
+        float newSpeedBuffDuration = playerStats.GetStat("speedBuffDuration") + .5f;
+
+        playerStats.SetStat("attackSpeed", newAttackSpeed);
+        playerStats.SetStat("movementSpeed", newMovementSpeed);
+        playerStats.SetStat("speedBuffDuration", newSpeedBuffDuration);
+
+        CancelInvoke("ResetSpeed");
+        Invoke(nameof(ResetSpeed), newSpeedBuffDuration);
+    }
+
+    private void ResetSpeed()
+    {
+        // reset attack speed and movement speed but not buff duration
+        playerStats.SetStat("attackSpeed", .30f);
+        playerStats.SetStat("movementSpeed", 18f);
     }
 
 }

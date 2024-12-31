@@ -681,15 +681,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 94936871506926088, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 94936871506926088, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
-      propertyPath: m_LocalScale.y
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 94936871506926088, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
-      propertyPath: m_LocalScale.z
+      propertyPath: m_LocalScale.y
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 94936871506926088, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 94936871506926088, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1965,7 +1965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8508511202554977809, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.68
+      value: -1.84
       objectReference: {fileID: 0}
     - target: {fileID: 8508511202554977809, guid: 2d64711610ea24a4bb88486a82f0d329, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2094,10 +2094,8 @@ MonoBehaviour:
   myRigidBody: {fileID: 6018796688989227288}
   movementSpeed: 10
   dieEffect: {fileID: 4553287630450876385, guid: 15483e51212e3d74886ea57291f4639a, type: 3}
-  ultimateAvailable: 0
   collisionSound: {fileID: 0}
   currentWeapon: {fileID: 11400000, guid: 7c7da485bcf902748a6527822cff5ac6, type: 2}
-  blinkAvailable: 1
   obstacleMask:
     serializedVersion: 2
     m_Bits: 8
@@ -2106,6 +2104,8 @@ MonoBehaviour:
   enemyType: 3
   isMiniboss: 0
   isBoss: 0
+  attackSound: {fileID: 0}
+  attackDamage: 3
   weaponTip: {fileID: 1377021721234914204}
 --- !u!114 &1889279042586323835
 MonoBehaviour:

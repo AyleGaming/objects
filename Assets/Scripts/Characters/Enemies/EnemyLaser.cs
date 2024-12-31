@@ -10,6 +10,7 @@ public class EnemyLaser : Enemy
     protected override void Start()
     {
         base.Start();
+        healthValue.SetHealthValue(60);
         // Initialize the LineRenderer - starts disabled
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 2; // Two points for the laser

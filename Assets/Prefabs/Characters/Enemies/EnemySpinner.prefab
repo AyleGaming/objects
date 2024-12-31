@@ -1848,13 +1848,8 @@ MonoBehaviour:
   myRigidBody: {fileID: 6018796688989227288}
   movementSpeed: 10
   dieEffect: {fileID: 4553287630450876385, guid: 15483e51212e3d74886ea57291f4639a, type: 3}
-  ultimateAvailable: 0
   collisionSound: {fileID: 8300000, guid: fd9a076f6613b2e48b1213fdd77bbf81, type: 3}
-  blinkSound: {fileID: 0}
-  blinkPrefab: {fileID: 0}
-  blinkDelay: 0.5
   currentWeapon: {fileID: 11400000, guid: c57ad227dc0f82347868c1cec1d5f21e, type: 2}
-  blinkAvailable: 1
   obstacleMask:
     serializedVersion: 2
     m_Bits: 0

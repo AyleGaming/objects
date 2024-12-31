@@ -157,11 +157,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -442705947
-  m_SortingLayer: 4
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e669945c9b556c441b9b2c567de3c40a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.23921569}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -183,12 +183,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a5ffde435799a4895e03e83dea30dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickUp: {fileID: 0}
   pickUpAudio: {fileID: 8300000, guid: c48a972d3d024c2408a3331750786a29, type: 3}
-  pickUpVolume: 10
   fadeDuration: 1
   lifetime: 10
-  healthPointsToAdd: 10
+  healthPointsToAdd: 15
 --- !u!61 &-1299775250653588138
 BoxCollider2D:
   m_ObjectHideFlags: 0

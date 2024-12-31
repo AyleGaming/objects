@@ -14,6 +14,9 @@ public class UIManager : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI shieldText;
 	[SerializeField] private Slider shieldSlider;
 
+	[SerializeField] private TextMeshProUGUI endGameScoreText;
+	[SerializeField] private TextMeshProUGUI endGameHighScoreText;
+
 	[SerializeField] private TextMeshProUGUI levelText;
 	[SerializeField] private Slider levelSlider;
 
@@ -75,6 +78,16 @@ public class UIManager : MonoBehaviour
 		{
 			Debug.LogError("UIManager: Score manager OnScoreChanged is not initialized.");
 		}
+
+		// High Score change
+		if(scoreManager.OnHighScoreChanged != null)
+        {
+			scoreManager.OnHighScoreChanged.AddListener(UpdateHighScoreValue);
+		} 
+		else
+        {
+			Debug.LogError("UIManager: Score manager OnHighScoreChanged is not initialized.");
+		}
 	}
 
 	private void SetupGameManagerListenersForUI(GameManager gameManager)
@@ -104,12 +117,18 @@ public class UIManager : MonoBehaviour
 
 	public void UpdateScoreValue(int score)
 	{
+		endGameScoreText.text = score.ToString();
 		scoreText.text = score.ToString();
+	}
+
+	public void UpdateHighScoreValue(int score)
+	{
+		endGameHighScoreText.text = score.ToString();
 	}
 
 	public void UpdateHealthValue(float score)
 	{
-		healthText.text = score.ToString();
+		healthText.text = score.ToString() + "/75"; ;
 		healthSlider.value = score;
 		Color green = new Color(0.44f, 0.79f, 0.22f, 0.8f);
 
@@ -119,7 +138,7 @@ public class UIManager : MonoBehaviour
 
 	public void UpdateShieldValue(float score)
 	{
-		shieldText.text = score.ToString();
+		shieldText.text = score.ToString() + "/25";
 		shieldSlider.value = score;
 	}
 
@@ -133,7 +152,7 @@ public class UIManager : MonoBehaviour
 			blinkText.text = score.ToString("F2");
 		}
 
-		blinkProgressBarImage.fillAmount = 1 - (score / 5);
+		blinkProgressBarImage.fillAmount = 1 - (score / 10);
 
 	}
 

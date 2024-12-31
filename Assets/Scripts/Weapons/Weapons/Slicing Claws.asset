@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 3
   ammo: 100
-  fireRate: 0.2
+  fireRate: 0.5
   ammoFaction: 1
   volume: 0.3
   fireSounds:

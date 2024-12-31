@@ -46,21 +46,23 @@ public class PlayerStats : MonoBehaviour
         { "attackSpeed", .30f },
         { "damageMultiplier", 1f },
         { "additionalGunsTime", 10f },
-        { "additiveWeaponDamage", 0f }
+        { "additiveWeaponDamage", 0f },
+        { "speedBuffDuration", 8f },
+        { "wingGunsBuffDuration", 10f }
     };
 
     private Dictionary<string, int> statsInt = new Dictionary<string, int>()
     {
         { "health", 75 },
         { "shield", 25 },
-        { "attackDamage", 25 },
+        { "attackDamage", 10 },
         { "gunsBase", 1 },
         { "gunsActive", 1 },
     };
 
     private Dictionary<string, bool> statsBool = new Dictionary<string, bool>()
     {
-        { "hasUltimateAbility", false },
+        { "hasUltimateAbility", true },
         { "hasBlinkAbility", true },
         { "hasShieldAbility", false }
     };
@@ -83,7 +85,7 @@ public class PlayerStats : MonoBehaviour
         if (statsInt.ContainsKey(statName))
         {
             statsInt[statName] = newValue;
-            Debug.Log($"INT: {statName}: {newValue}");
+//            Debug.Log($"INT: {statName}: {newValue}");
         }
         else
         {
@@ -96,7 +98,7 @@ public class PlayerStats : MonoBehaviour
         if (statsBool.ContainsKey(statName))
         {
             statsBool[statName] = newValue;
-            Debug.Log($"BOOL: {statName}: {newValue}");
+//            Debug.Log($"BOOL: {statName}: {newValue}");
         }
         else
         {

@@ -6,12 +6,13 @@ public class ScoreManager : MonoBehaviour
 {
     public static event Action<ScoreManager> OnScoreManagerInit;
     public UnityEvent<int> OnScoreChanged;
+    public UnityEvent<int> OnHighScoreChanged;
     [SerializeField] private int totalScore;
     [SerializeField] private int highestScore;
 
     [Header("Score Values")]
     [SerializeField] public int scorePerEnemy;
-    [SerializeField] private int scorePerCoin;
+    [SerializeField] private int scorePerAsteroid;
     [SerializeField] private int scorePerPowerUp;
 
     private void OnEnable()
@@ -49,11 +50,16 @@ public class ScoreManager : MonoBehaviour
 
     private void RegisterScore()
     {
+        int highestScore = PlayerPrefs.GetInt("HighScore", 0);
+
         // NEW HIGH SCORE!
         if (totalScore > highestScore)
         {
             highestScore = totalScore;
+            PlayerPrefs.SetInt("HighScore", totalScore);
+            PlayerPrefs.Save(); // Ensure data is written to disk
         }
+        OnHighScoreChanged.Invoke(highestScore);
     }
 
     public void IncreaseScore(ScoreType action)
@@ -64,8 +70,8 @@ public class ScoreManager : MonoBehaviour
                 totalScore += scorePerEnemy;
                 break;
 
-            case ScoreType.CoinCollected:
-                totalScore += scorePerCoin;
+            case ScoreType.AsteroidDestroyed:
+                totalScore += scorePerAsteroid;
                 break;
 
             case ScoreType.PowerUpCollected:

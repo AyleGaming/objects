@@ -12,11 +12,11 @@ public class Meteor : Character
     [SerializeField] private Sprite[] meteorSprites; // Array of meteor sprites
 
     private GameObject prefabToSpawnOnDeath;
-    private int meteorCollisionDamage = 1;
+    private int meteorCollisionDamage = 2;
     protected Player target;
     protected float attackTimer;
     private Transform player; // Reference to the player
-    private int startingHealthValue = 150;
+    private int startingHealthValue = 50;
 
     public enum MeteorSize
     {
@@ -95,6 +95,7 @@ public class Meteor : Character
     public override void PlayDeathEffect()
     {
         base.PlayDeathEffect();
+        GameManager.Instance.EnemyKilled(ScoreType.AsteroidDestroyed);
         if (prefabToSpawnOnDeath != null)
         {
             Instantiate(prefabToSpawnOnDeath, transform.position, Quaternion.identity);
@@ -156,16 +157,16 @@ public class Meteor : Character
         switch (meteorSize)
         {
             case MeteorSize.Small:
-                healthValue = 200;  // Small meteors have lower health
+                healthValue = startingHealthValue;  // Small meteors have lower health
                 break;
             case MeteorSize.Medium:
-                healthValue = 400; // Medium meteors have medium health
+                healthValue = 75; // Medium meteors have medium health
                 break;
             case MeteorSize.Large:
-                healthValue = 600; // Large meteors have higher health
+                healthValue = 125; // Large meteors have higher health
                 break;
             default:
-                healthValue = 200; // Default small if size isn't recognized
+                healthValue = startingHealthValue; // Default small if size isn't recognized
                 break;
         }
 

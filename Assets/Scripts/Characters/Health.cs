@@ -41,11 +41,19 @@ public class Health
 
     public void IncreaseHealth(float increaseParamater)
     {
-        healthValue += increaseParamater;
+        // health cant overflow
+        if (healthValue + increaseParamater >= 75) {
+            healthValue = 75;
+        }
+        else
+        {
+            healthValue += increaseParamater;
+        }
         OnHealthChanged.Invoke(healthValue);
     }
     public void IncreaseShield(float increaseParamater)
     {
+        // shield can overflow
         shieldValue += increaseParamater;
         OnShieldChanged.Invoke(shieldValue);
     }

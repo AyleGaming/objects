@@ -6,7 +6,6 @@ public class EnemySpinner : Enemy
 {
     private float speedMultiplier = 1.0f; // Initial speed multiplier
     private float accelerationRate = 0.1f; // Rate at which speed increases over time
-    private int cutDamage = 5;
     [SerializeField] private float rotationSpeed = 50f;
     [SerializeField] private AudioClip[] attackSounds; // Sounds for attack
     [SerializeField] public float volume = 1.0f; // Volume for the sound
@@ -15,7 +14,7 @@ public class EnemySpinner : Enemy
     protected override void Start()
     {
         base.Start();
-        healthValue.SetHealthValue(60);
+        healthValue.SetHealthValue(30);
 
     }
 
@@ -23,19 +22,15 @@ public class EnemySpinner : Enemy
     {
         base.Update();
         RotateUFO();
+        attackTimer += Time.deltaTime;
     }
 
     public override void Attack()
     {
-        base.Attack();
         if (attackTimer >= currentWeapon.fireRate)
         {
-            target.healthValue.DecreaseHealth(cutDamage);
+            target.healthValue.DecreaseHealth(currentWeapon.damage);
             attackTimer = 0;
-        }
-        else
-        {
-            attackTimer += Time.deltaTime;
         }
     }
 
@@ -58,8 +53,6 @@ public class EnemySpinner : Enemy
             // Damage the player
             Attack();
             PlayRandomAttackSound(transform.position);
-           
-            //            player.healthValue.DecreaseHealth(cutDamage);
         }
     }
 

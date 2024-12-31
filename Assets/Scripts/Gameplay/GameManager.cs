@@ -33,19 +33,19 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private bool enableEnemiesSpawn = true;
     [SerializeField] private bool enableMeteorsSpawn = true;
-    [SerializeField] private int baseEnemiesToLevelUp = 10;
+    [SerializeField] private int baseEnemiesToLevelUp = 5;
 
     [SerializeField] private EnemyType selectedEnemyType = EnemyType.Earth;
     [SerializeField] private EnemySuperType selectedEnemySuperType = EnemySuperType.Base;
 
-    private int maxEnemies = 10;
-    private float minSpawnDelay = 2f; // Minimum delay for spawning
+    private int maxEnemies = 1;
+    private float minSpawnDelay = 1f; // Minimum delay for spawning
     private float maxSpawnDelay = 4f; // Maximum delay for spawning
-    private float spawnDelayMultiplier = 0.95f; // Multiplier to reduce delay every 10 levels
+    private float spawnDelayMultiplier = 0.90f; // Multiplier to reduce delay every 10 levels
 
     private float levelMultiplier = 1.1f; // increase amount of enemies required per level
     private int levelKillCount = 0; // number of enemies killed per level
-    [SerializeField] float killsForUltimate = 20f;
+    float killsForUltimate = 25f;
     private float killsSinceLastUltimate = 0f;
     private float meteorSpawnChance = 0.85f;
 
@@ -63,7 +63,6 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject); // Persist between scenes
     }
 
     void Start()
@@ -124,7 +123,7 @@ public class GameManager : MonoBehaviour
 
         EnemyKilled(ScoreType.EnemyKilled);
 
-        if (totalEnemiesKilled % 6 == 0)
+        if (totalEnemiesKilled % 4 == 0)
         {
             SpawnPickUp(enemyToBeRemoved);
         }
@@ -140,7 +139,6 @@ public class GameManager : MonoBehaviour
 
         if (totalEnemiesKilled % killsForUltimate == 0)
         {
-            Debug.Log($"totalEnemiesKilled: {totalEnemiesKilled}");
             EnablePlayerUltimate(true);
         }
 
@@ -162,6 +160,12 @@ public class GameManager : MonoBehaviour
         //  Time.timeScale = 0;
     }
 
+
+    private int GetEnemiesRequiredForLevelUp()
+    {
+        return Mathf.FloorToInt(baseEnemiesToLevelUp * Mathf.Pow(levelMultiplier, gameLevel));
+    }
+
     private void EnablePlayerUltimate(bool status)
     {
         Player.Instance.SetUltimateAvailable(status);
@@ -181,7 +185,7 @@ public class GameManager : MonoBehaviour
             if (listOfAllEnemiesAlive.Count < maxEnemies)
             {
                 // Meteor spawning
-                if (UnityEngine.Random.value > meteorSpawnChance) // 30% chance to spawn a meteor
+                if (UnityEngine.Random.value > meteorSpawnChance) // 15% chance to spawn a meteor
                 {
                     if (enableMeteorsSpawn)
                     {
@@ -235,11 +239,6 @@ public class GameManager : MonoBehaviour
         Instantiate(meteorToSpawn, spawnPoint.position, Quaternion.identity);
     }
 
-    private int GetEnemiesRequiredForLevelUp()
-    {
-        return Mathf.FloorToInt(baseEnemiesToLevelUp * Mathf.Pow(levelMultiplier, gameLevel - 1));
-    }
-
     public void UnlockNewPowers()
     {
         PowerData selectedAttack = powerLibrary.GetRandomPower(PowerCategory.Attack, gameLevel, RollPowerRarity());
@@ -280,11 +279,10 @@ public class GameManager : MonoBehaviour
         OnLevelUpChanged.Invoke(gameLevel);
         OnLevelPercentStatusChanged.Invoke(0f);
 
-        maxEnemies += 2;
-//        Debug.Log($"Level Up! Current Level: {gameLevel}");
+        maxEnemies += 1;
 
-        // Every 10 levels, decrease the spawn delay range
-        if (gameLevel % 2 == 0)
+        // Every 3 levels, decrease the spawn delay range
+        if (gameLevel % 3 == 0)
         {
             minSpawnDelay *= spawnDelayMultiplier;
             maxSpawnDelay *= spawnDelayMultiplier;
@@ -296,10 +294,10 @@ public class GameManager : MonoBehaviour
             meteorSpawnChance = Mathf.Max(meteorSpawnChance, 0.1f);
             DetermineEnemyType();
 
-            //            Debug.Log($"New spawn delay: {minSpawnDelay} to {maxSpawnDelay}: METEORS: {meteorSpawnChance}: killsForUltimate: {killsForUltimate}");
+            Debug.Log($"New spawn delay: {minSpawnDelay} to {maxSpawnDelay}: METEORS: {meteorSpawnChance}: killsForUltimate: {killsForUltimate}");
+            Debug.Log($"requiredEnemiestoLevel: {GetEnemiesRequiredForLevelUp()}");
 
-
-            UnlockNewPowers();
+            //            UnlockNewPowers();
         }
     }
 

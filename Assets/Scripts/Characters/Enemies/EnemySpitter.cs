@@ -7,7 +7,11 @@ public class EnemySpitter : Enemy
     protected override void Start()
     {
         base.Start();
-        
+    }
+    protected override void Update()
+    {
+        base.Update();
+        attackTimer += Time.deltaTime;
     }
 
     public override void Attack()
@@ -16,10 +20,6 @@ public class EnemySpitter : Enemy
         {
             currentWeapon.Shoot(weaponTip);
             attackTimer = 0;
-        }
-        else
-        {
-            attackTimer += Time.deltaTime;
         }
     }
 }

@@ -1,4 +1,4 @@
 public enum ScoreType
 {
-    EnemyKilled, CoinCollected, PowerUpCollected
+    EnemyKilled, AsteroidDestroyed, PowerUpCollected
 }

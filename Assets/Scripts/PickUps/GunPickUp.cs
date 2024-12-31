@@ -9,8 +9,7 @@ public class GunPickUp : PickUp
     
     protected override void PickMeUp(Player player)
     {
+        base.PickMeUp(player);
         player.SetWingGunsActive(gunsToAdd + startingGuns);
-        AudioSource.PlayClipAtPoint(pickUpAudio, player.transform.position, pickUpVolume);
-        Destroy(gameObject);
     }
 }

@@ -12,7 +12,7 @@ public class EnemyExploder : Enemy
     protected override void Start()
     {
         base.Start();
-        healthValue.SetHealthValue(50);
+        healthValue.SetHealthValue(10);
 
         particleEffectInstance = Instantiate(moveEffect, transform.position, Quaternion.identity);
         particleEffectInstance.transform.SetParent(transform); // Attach it to the enemy's transform

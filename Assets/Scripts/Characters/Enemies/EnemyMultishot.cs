@@ -10,7 +10,7 @@ public class EnemyMultishot : Enemy
     protected override void Start()
     {
         base.Start();
-        healthValue.SetHealthValue(125);
+        healthValue.SetHealthValue(40);
     }
 
     public override void Attack()
